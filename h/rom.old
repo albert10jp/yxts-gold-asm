@@ -1,0 +1,401 @@
+;;********************** const **************************************
+;************ !!below rom access, cant modify ******************
+HDPS		equ	160
+VDPS		equ	80
+;ROM_BANK	equ	gmud_rom_bank
+
+GMUD_MON	equ	0
+MAX_GOODS	equ	20	;id+num
+NPC_GOODS	equ	5
+MAX_SELL	equ	10
+MAX_EQUIP	equ	11
+MAX_KF		equ	20	;id+lvl+pot
+MAX_USEKF	equ	5
+MAX_NAME	equ	8
+MAX_PASS	equ	6
+
+RESERVE_SIZE	equ	32
+;CHECK_SIZE	equ	28
+CHECK_SIZE	equ	6
+;************ !!above rom access, cant modify ******************
+
+;************ !!below rom access, cant modify ******************
+string_ptr	equ	HelpPtr
+obj_ptr		equ	tonea_ptr
+you_ptr		equ	alarm_ptr
+;************ !!above rom access, cant modify ******************
+
+;******************* !!below rom access, dont modify **********************
+__base	equ	2000h
+	define	256,game_buf		;缓冲for pyh
+	define	CPR*80,scroll_buf	;显存缓冲
+	define	CPR*80,img_buf		;图象缓冲
+	define	256,bank_text
+
+	define	2,lcdbuf_ptr	;(scroll_buf,lcdbuf)
+	define	2,mud_seed
+	define	2,skill_level
+	define	1,obj_flag
+
+	;------------ for fight.s -----------
+	define	1,net_flag
+	define	1,perform_flag	;
+	define	1,perform_id
+	define	1,kf_type
+	define	1,kf_id
+goods_type	equ	kf_type
+goods_id	equ	kf_id
+	;------------ for fight.s -----------
+
+	;------------ player state -----------
+save_data	equ	__base
+	define	1,game_ver
+	define	4,game_pid
+	define	4,mud_age
+	define	1,attr_str
+	define	1,attr_dex
+	define	1,attr_int
+	define	1,attr_con
+	define	1,attr_per
+	define	1,attr_kar
+
+	define	1,man_picid	;max:16
+	define	1,man_master
+	define	2,man_respect
+
+man_state	equ	__base
+	define	MAX_NAME+1,man_name
+	define	1,man_busy
+	define	1,man_pai
+	define	1,man_gender
+	define	1,man_age
+	define	1,man_attack
+	define	1,man_defense
+	define	1,man_damage
+	define	1,man_armor
+	define	4,man_exp
+	define	2,man_force
+	define	1,man_str
+	define	1,man_dex
+	define	1,man_int
+	define	1,man_con
+	define	1,man_per
+	define	1,man_kar
+	define	2,man_hp
+	define	2,man_maxhp
+	define	2,man_fp
+	define	2,man_maxfp
+	define	2,man_effhp
+	define	1,man_weapon
+
+	define	2,man_food
+	define	2,man_maxfood
+	define	2,man_water
+	define	2,man_maxwater
+	define	2,man_pot
+	define	4,man_money
+
+	define	MAX_USEKF,man_usekf	;bit7:1 enable 0: no
+	define	1,man_kfnum
+	define	4*MAX_KF,man_kf		;功夫(id 级别 当前数值)
+
+	define	MAX_PASS+1,man_pwd
+	define	RESERVE_SIZE,reserve_buf
+SAVE_SIZE	equ	__base-save_data
+	define	MAX_EQUIP,man_equip	;bit7:1 enable 0: no
+	define	2*MAX_GOODS,man_goods	;物品(id 数量)
+	;------------ player state -----------
+	
+	define	2,id_seed	;!!test
+	
+	;------------ npc state -----------
+npc_state	equ	__base
+	define	MAX_NAME+1,npc_name
+	define	1,npc_busy
+	define	1,npc_pai
+	define	1,npc_gender
+	define	1,npc_age
+	define	1,npc_attack
+	define	1,npc_defense
+	define	1,npc_damage
+	define	1,npc_armor
+	define	4,npc_exp
+	define	2,npc_force
+	define	1,npc_str
+	define	1,npc_dex
+	define	1,npc_int
+	define	1,npc_con
+	define	1,npc_per
+	define	1,npc_kar
+	define	2,npc_hp
+	define	2,npc_maxhp
+	define	2,npc_fp
+	define	2,npc_maxfp
+	define	2,npc_effhp
+	define	NPC_GOODS,npc_goods
+npc_weapon	equ	npc_goods
+npc_equip	equ	npc_goods+1
+
+	define	2,npc_money
+	define	MAX_USEKF,npc_usekf	;bit7:1 enable 0: no
+	define	1,npc_kfnum
+NPC_DATA_LEN	equ	__base-npc_state
+	define	2*MAX_KF,npc_kf		;功夫(id 级别)
+	define	MAX_SELL,vendor_goods
+	;------------ npc state -----------
+;******************* !!above rom access, dont modify **********************
+	define	256,efuns_buf		;用与切ram,绝对不能被破坏
+
+;;*******************************************************************
+;; bios/h/graph.h
+;;*******************************************************************
+m1l	equ	a1	;(双字节)
+m1h	equ	m1l+1
+m2l	equ	a2	;(双字节)
+m2h	equ	m2l+1
+__base	equ	graph_buf			;30 bytes
+	define	1,x0
+	define	1,y0
+	define  1,x1
+	define  1,y1
+	define	1,xx
+	define	1,yy
+	define	1,lcmd		;=0;clear;1;draw;2:convert;
+				; 3: ora  4:and  5:eor
+	define	1,sgn
+	define	1,y0back
+	define	2,m3l
+m3h	equ	m3l+1
+	define	9,r0
+r1		equ	r0+1
+r2		equ	r1+1
+r3		equ	r2+1
+r4		equ	r3+1
+r5		equ	r4+1
+r6		equ	r5+1
+r7		equ	r6+1
+r8		equ	r7+1
+
+	define	1,list_x0	;for list_menu keep right frame coordinate
+	define	1,list_y0
+	define	1,list_x1
+	define	1,list_y1
+
+;;******************** macro ***************************************
+dd	macro	val
+	dw	val%65536
+	dw	val/65536
+	endm
+
+Distant	macro	dx0,dx1
+	sec
+	lda	dx1
+	sbc	dx0
+	clc
+	adc	#1
+	endm
+
+lm21	macro	d,s
+	lda	s
+	sta	d
+	lda	#0
+	sta	d+1
+	endm
+
+mulx3	macro	s
+	lda	s
+	asl	a
+	clc
+	adc	s
+	endm
+
+sub0a1	macro	d
+	eor	#0ffh
+	sta	d
+	inc	d
+	endm
+
+sub0a2	macro	dd
+	eor	#0ffh
+	sta	dd
+	lda	#0ffh
+	sta	dd+1
+	inc2	dd
+	endm
+
+sub1	macro	s1,s2,d
+	sec
+	lda	s1
+	sbc	s2
+	ifidn	<d>,<a>
+		sta	s1
+	else
+		sta	d
+	endif
+	endm
+
+sub21	macro	s1,s2,d
+	sec
+	lda	s1
+	sbc	s2
+	ifidn	<d>,<a>
+		sta	s1
+		ifzp	s1
+			bcs	$+4
+		else
+			bcs	$+5
+		endif
+		dec	s1+1
+	else
+		sta	d
+		lda	s1+1
+		sta	d+1
+		ifzp	d
+			bcs	$+4
+		else
+			bcs	$+5
+		endif
+		dec	d+1
+	endif
+	endm
+
+sub42	macro	s1,s2,d,local
+	ifidn	<d>,<a>
+	else
+		lda	s1+2
+		sta	d+2
+		lda	s1+3
+		sta	d+3
+	endif
+
+	sec
+	lda	s1
+	sbc	s2
+	ifidn	<d>,<a>
+		sta	s1
+	else
+		sta	d
+	endif
+	lda	s1+1
+	sbc	s2+1
+	ifidn	<d>,<a>
+		sta	s1+1
+	else
+		sta	d+1
+	endif
+	bcs	local
+
+	ifidn	<d>,<a>
+		lda	s1+2
+		ifzp	s1+2
+		bne	$+4
+		else
+		bne	$+5
+		endif
+		dec	s1+3
+		dec	s1+2
+	else
+		lda	d+2
+		ifzp	d+2
+		bne	$+4
+		else
+		bne	$+5
+		endif
+		dec	d+3
+		dec	d+2
+	endif
+local:
+	endm
+
+add42	macro	s1,s2,d,local
+	ifidn	<d>,<a>
+	else
+		lda	s1+2
+		sta	d+2
+		lda	s1+3
+		sta	d+3
+	endif
+
+	clc
+	lda	s1
+	adc	s2
+	ifidn	<d>,<a>
+		sta	s1
+	else
+		sta	d
+	endif
+	lda	s1+1
+	adc	s2+1
+	ifidn	<d>,<a>
+		sta	s1+1
+	else
+		sta	d+1
+	endif
+	bcc	local
+
+	ifidn	<d>,<a>
+		inc	s1+2
+		ifzp	s1+2
+		bne	$+4
+		else
+		bne	$+5
+		endif
+		inc	s1+3
+	else
+		inc	d+2
+		ifzp	d+2
+		bne	$+4
+		else
+		bne	$+5
+		endif
+		inc	d+3
+	endif
+local:
+	endm
+
+cmp21	macro	s1,s2,a,local
+	ifcidn	s2,#
+	ld~a	s1+1
+	cp~a	>s2
+	bne	local
+	ld~a	s1
+	cp~a	<s2
+local:
+	else
+	ld~a	s1+1
+	cp~a	#0
+	bne	local
+	ld~a	s1
+	cp~a	s2
+local:
+	endif
+	endm
+
+cmp4	macro	s1,s2,a,local
+	ld~a	s1+3
+	cp~a	s2+3
+	bne	local
+	ld~a	s1+2
+	cp~a	s2+2
+	bne	local
+	ld~a	s1+1
+	cp~a	s2+1
+	bne	local
+	ld~a	s1
+	cp~a	s2
+local:
+	endm
+
+SET_TALK_XY	macro	xx
+	ldx	man_x0
+	cpx	#160-xx
+	bcc	$+4
+	ldx	#160-xx
+	ldy	#10
+	endm
+
+MYSTOP	macro
+	bit	stop_flag
+	bpl	$+3
+	db	3
+	endm

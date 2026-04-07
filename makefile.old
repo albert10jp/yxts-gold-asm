@@ -1,0 +1,95 @@
+
+all: gmud_data.bin obj.bin 
+
+tar: /tmp/gmud.tar
+
+GA=ga6502
+GL=gl
+
+SRC1= a_down.s unr_sys.s
+SRC2= end.s
+SRC3= a_down2.s
+
+SRC_GAME= game.s gmud.s talk.s fight.s npc.s task.s \
+	  system.s skills.s goods.s \
+	  string.s menu.s font.s tbank.s aux.s #netengine.s
+
+SRC_GAME2= brk.s unr_sys.s hello.s perform.s serve.s \
+	   pyh.s pyh_quest.s npc_quest.s \
+	   input.s scroll.s cartoon.s string2.s \
+	   digit.s draw.s math.s aux2.s mxxtbl.s save.s
+SRC_IMG= img_addr.s desc.s
+SRC_TEXT= text_addr.s qlist.s
+SRC_OTHER= h/gmud.h h/id.h h/mud_funcs.h h/func.mac h/rom.h \
+	   data/*.h data/*_data nf.s a_down.s a_down2.s makefile
+
+obj.bin: #$(SRC1) $(SRC_GAME) $(SRC2) $(SRC3)		#1 bank
+	$(GA) -oo -c../common.s $(SRC1) $(SRC_GAME) $(SRC2) 2>junk
+	$(GL) -do -a16384 -mmap6 -oobj $(SRC1) $(SRC_GAME) $(SRC2) 2>junk2
+	set `wc -c obj` ; [ $$1 -le 32768 ]
+	rm -f obj.bin
+	padff obj obj.bin 8000
+	#swap4000 obj.bin
+	cat gmud_rom.bin >>obj.bin	#做成下载的四个bank
+	rm -rf gmud_rom.bin
+	#down ../obj.bin  obj.bin 192 4		#81h+63=129+63=192
+	#rm obj.bin
+
+	$(GA) -oo -c../common.s $(SRC3) 2>junk
+	$(GL) -do -a16384 -mmap -oobj $(SRC3) 2>junk2
+
+	mv obj.bin gmud.bin
+	#cat obj obj.bin >down.bin
+	#putlen down.bin
+	#jm down.bin
+	#rm -f down.bin
+	#cp jm.obj /tmp/nc880/down/gmud_33.bin
+
+	rm -f junk* obj.bin
+
+gmud_data.bin: prog2.bin img.bin text.bin #3 bank
+	cat prog2.bin img.bin text.bin > gmud_rom.bin
+	rm prog2.bin img.bin text.bin
+
+prog2.bin: $(SRC_GAME2) $(SRC2)		#1 bank
+	$(GA) -oo -c../common.s $(SRC_GAME2) $(SRC2) 2>junk
+	$(GL) -do -a16384 -mmap1 -oobj $(SRC_GAME2) $(SRC2) 2>junk2
+	set `wc -c obj` ; [ $$1 -le 32768 ]
+	rm -f prog2.bin
+	padff obj prog2.bin 8000
+	#swap16k prog2.bin
+	rm junk*
+
+img.bin: $(SRC_IMG) $(SRC2)	#1 bank
+	$(GA) -oo -c../common.s $(SRC_IMG) $(SRC2) 2>junk
+	$(GL) -do -a16384 -mmap2 -oobj $(SRC_IMG) $(SRC2) 2>junk2
+	set `wc -c obj` ; [ $$1 -le 32768 ]
+	rm -f img.bin
+	padff obj img.bin 8000
+	#swap16k img.bin
+	rm junk*
+
+text.bin: $(SRC_TEXT) $(SRC2)	#1 bank
+	$(GA) -oo -c../common.s $(SRC_TEXT) $(SRC2) 2>junk
+	$(GL) -do -a16384 -mmap3 -oobj $(SRC_TEXT) $(SRC2) 2>junk2
+	set `wc -c obj` ; [ $$1 -le 32768 ]
+	rm -f text.bin
+	padff obj text.bin 8000
+	#swap16k text.bin
+	rm junk*
+
+#**************************************************************
+
+/tmp/gmud.tar: $(SRC_GAME) $(SRC_IMG) $(SRC_TEXT) $(SRC_OTHER) $(SRC_GAME2)
+	tar -cf $@ $(SRC_GAME) $(SRC_IMG) $(SRC_TEXT) $(SRC_OTHER) $(SRC_GAME2)
+
+line:
+	wc -l $(SRC_GAME) $(SRC_GAME2)
+
+allline:
+	wc -l $(SRC_GAME) $(SRC_IMG) $(SRC_TEXT) $(SRC_OTHER) $(SRC_GAME2)
+
+zpmap:
+	$(GA) -c../common.s -s -f h/gmud.h > .zpmap
+clean cleanall:
+	rm -f o/*.o obj map map1 map2 map3 core *.bin junk* jm.obj

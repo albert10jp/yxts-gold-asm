@@ -1,0 +1,196 @@
+SetDigit	macro	x0,y0,value,mvalue
+	ldx	x0
+	ldy	y0
+	lm	binbuf,value
+	lm	binbuf+1,value+1
+	ifidn	<mvalue>,<a>
+	lda	#0
+	sta	bcdbuf
+	sta	bcdbuf+1
+	else
+	lm	bcdbuf,mvalue
+	lm	bcdbuf+1,mvalue+1
+	endif
+	endm
+
+SetLine	macro	x0,y0,value,mvalue,mitem
+	ldx	x0
+	ldy	y0
+	lm	binbuf,value
+	lm	binbuf+1,value+1
+	lm	bcdbuf,mvalue
+	lm	bcdbuf+1,mvalue+1
+	ifidn	<mitem>,<a>
+	lda	#39
+	else
+	lda	mitem
+	endif
+	endm
+
+line	macro	px0,py0,px1,py1
+	lm	x0,px0
+	lm	y0,py0
+	lm	x1,px1
+	lm	y1,py1
+	jsr	line_draw
+	endm
+
+sqr	macro	px0,py0,px1,py1
+	lm	x0,px0
+	lm	y0,py0
+	lm	x1,px1
+	lm	y1,py1
+	jsr	square_draw
+	endm
+
+block	macro	px0,py0,px1,py1
+	lm	x0,px0
+	lm	y0,py0
+	lm	x1,px1
+	lm	y1,py1
+	jsr	block_draw
+	endm
+	
+	
+Wblock	macro	XX,YY,source
+	ldx	XX
+	ldy	YY
+	lm	fccode,#<source
+	lm	fccode+1,#>source
+	jsr	write_block0
+	endm
+
+UPline	macro	XX,YY,source
+	extrn	show_one_line
+	ldx	XX
+	ldy	YY
+	ifidn	<source>,<a>
+	else
+		lm	string_ptr,#<source
+		lm	string_ptr+1,#>source
+	endif
+	jsr	show_one_line
+	endm
+
+UPlines	macro	XX,YY,source,nline
+	extrn	show_string
+	ldx	XX
+	ldy	YY
+	lda	#<source
+	sta	string_ptr
+	lda	#>source
+	sta	string_ptr+1
+	ifidn	<nline>,<a>
+		lda	#3
+	else
+		lda	nline
+	endif
+	jsr	show_string
+	endm
+
+Message	macro	px0,py0,px1,py1,source
+	extrn	message_box
+	lm	x0,px0
+	lm	y0,py0
+	lm	x1,px1
+	lm	y1,py1
+	ifidn	<source>,<a>
+	else
+		lda	#<source
+		sta	string_ptr
+		lda	#>source
+		sta	string_ptr+1
+	endif
+	jsr	message_box
+	endm
+
+ConfirmBox	macro	px0,py0,px1,py1,source
+	extrn	message_box_for_pyh
+	lm	x0,px0
+	lm	y0,py0
+	lm	x1,px1
+	lm	y1,py1
+	ifidn	<source>,<a>
+	else
+		lda	#<source
+		sta	string_ptr
+		lda	#>source
+		sta	string_ptr+1
+	endif
+	jsr	message_box_for_pyh
+	endm
+
+CLS_NLINE     macro   sline,linenum
+	ldx     sline
+	ldy     linenum
+	jsr	clear_nline
+	endm
+
+CLS_NLINE2    macro   sline,linenum
+	ldx     sline
+	ldy     linenum
+	jsr	clear_nline2
+	endm
+	
+WAIT_ESC_KEY	macro
+	extrn	wait_key
+	jsr	wait_key
+	cmp	#ESC_KEY
+	bne	$-5
+	endm
+	
+WAIT_TALK_KEY	macro
+	extrn	wait_key
+	jsr	wait_key
+	cmp	#CR_KEY
+	beq	$+6
+	cmp	#DOWN_KEY
+	bne	$-9
+	endm
+
+print	macro	source
+	extrn	show_one_line
+	lm	lcdbuf_ptr,#<lcdbuf
+	lm	lcdbuf_ptr+1,#>lcdbuf
+	ldx	#0
+	sec
+	lda	#79
+	sbc	char_height
+	tay
+	lm	string_ptr,#<source
+	lm	string_ptr+1,#>source
+	jsr	show_one_line
+	endm
+
+SWITCH	macro   key_len,key_tbl
+	extrn   mud_proc_key
+	tax
+	ldy     key_len
+	lda     #<key_tbl
+	sta     a1
+	lda     #>key_tbl
+	sta     a1h
+	txa
+	jsr   mud_proc_key
+	endm
+
+INDEX	macro   key_len,key_tbl
+	extrn   find_index
+	tax
+	ldy     #key_len
+	lda     #<key_tbl
+	sta     a1
+	lda     #>key_tbl
+	sta     a1h
+	txa
+	jsr   find_index
+	endm
+
+POP_MENU	macro	XX,YY,source
+	extrn	pop_menu
+	ldx	XX
+	ldy	YY
+	lm	menu_ptr,#<source
+	lm	menu_ptr+1,#>source
+	jsr	pop_menu
+	endm

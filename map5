@@ -1,0 +1,122 @@
+unr_sys.s start pc:0 length:0
+text_addr.s start pc:0 length:96e5
+npc_quest.txt start pc:96e5 length:a0e
+null.s start pc:a0f3 length:0
+
+  Address         Publics by Name
+
+ 0000:e051  Abs  Adj_Volume
+ 0000:e07e  Abs  ExeFile
+ 0000:e096  Abs  NgffsMoveData
+ 0000:e093  Abs  PhyReadBytes
+ 0000:e05d  Abs  ProcKey
+ 0000:e060  Abs  Proc_Key
+ 0000:e04e  Abs  TTS_Reset
+ 0000:e048  Abs  TTS_Sleep
+ 0000:e04b  Abs  TTS_Wakeup
+ 0000:e066  Abs  TwoHz
+ 0000:e015  Abs  bell
+ 0000:e006  Abs  bin2digit
+ 0000:e063  Abs  case
+ 0000:e024  Abs  cspeed
+ 0000:e02a  Abs  delay_time
+ 0000:e02d  Abs  delay_time1
+ 0000:e03c  Abs  disable_dac_out
+ 0000:e099  Abs  disp_icon
+ 0000:e09c  Abs  downexec
+ 0000:e039  Abs  enable_dac_out
+ 0000:e009  Abs  enter_sleep
+ 0000:e00c  Abs  enter_sleepz
+ 0000:e05a  Abs  get_8x8_font
+ 0000:e072  Abs  get_next_data
+ 0000:e075  Abs  getunicode
+ 0000:e069  Abs  gysdata
+ 0000:e036  Abs  isdigit
+ 0000:e018  Abs  key_click_bell
+ 0000:0114       kf_addr_tbl
+ 0000:e078  Abs  log_to_ph
+ 0000:e084  Abs  move_databuf_wbuf
+ 0000:e081  Abs  move_rbuf_databuf
+ 0000:e057  Abs  move_to_ram
+ 0000:e027  Abs  mspeed
+ 0000:e01b  Abs  mspeed4
+ 0000:0012       npc_data_tbl
+ 0000:96e5       npc_id_tbl
+ 0000:9704       npc_quest_tbl
+ 0000:e07b  Abs  oldmon
+ 0000:e045  Abs  out_celp_data
+ 0000:e08d  Abs  phyRead_16B
+ 0000:e090  Abs  phyRead_512B
+ 0000:e08a  Abs  phyWrite_16B
+ 0000:e087  Abs  phyWrite_512B
+ 0000:e06c  Abs  playdt
+ 0000:e09f  Abs  proc_menuI
+ 0000:e06f  Abs  set_alarm_on
+ 0000:e021  Abs  speed5
+ 0000:e01e  Abs  speed7
+ 0000:e00f  Abs  start_4ch
+ 0000:e03f  Abs  start_sound
+ 0000:e012  Abs  stop_4ch
+ 0000:e042  Abs  stop_sound
+ 0000:e033  Abs  wait_160_ms
+ 0000:e030  Abs  wait_1_sec
+ 0000:e054  Abs  wait_dsp1_ready
+
+  Address         Publics by Value
+
+ 0000:0012       npc_data_tbl
+ 0000:0114       kf_addr_tbl
+ 0000:96e5       npc_id_tbl
+ 0000:9704       npc_quest_tbl
+ 0000:e006  Abs  bin2digit
+ 0000:e009  Abs  enter_sleep
+ 0000:e00c  Abs  enter_sleepz
+ 0000:e00f  Abs  start_4ch
+ 0000:e012  Abs  stop_4ch
+ 0000:e015  Abs  bell
+ 0000:e018  Abs  key_click_bell
+ 0000:e01b  Abs  mspeed4
+ 0000:e01e  Abs  speed7
+ 0000:e021  Abs  speed5
+ 0000:e024  Abs  cspeed
+ 0000:e027  Abs  mspeed
+ 0000:e02a  Abs  delay_time
+ 0000:e02d  Abs  delay_time1
+ 0000:e030  Abs  wait_1_sec
+ 0000:e033  Abs  wait_160_ms
+ 0000:e036  Abs  isdigit
+ 0000:e039  Abs  enable_dac_out
+ 0000:e03c  Abs  disable_dac_out
+ 0000:e03f  Abs  start_sound
+ 0000:e042  Abs  stop_sound
+ 0000:e045  Abs  out_celp_data
+ 0000:e048  Abs  TTS_Sleep
+ 0000:e04b  Abs  TTS_Wakeup
+ 0000:e04e  Abs  TTS_Reset
+ 0000:e051  Abs  Adj_Volume
+ 0000:e054  Abs  wait_dsp1_ready
+ 0000:e057  Abs  move_to_ram
+ 0000:e05a  Abs  get_8x8_font
+ 0000:e05d  Abs  ProcKey
+ 0000:e060  Abs  Proc_Key
+ 0000:e063  Abs  case
+ 0000:e066  Abs  TwoHz
+ 0000:e069  Abs  gysdata
+ 0000:e06c  Abs  playdt
+ 0000:e06f  Abs  set_alarm_on
+ 0000:e072  Abs  get_next_data
+ 0000:e075  Abs  getunicode
+ 0000:e078  Abs  log_to_ph
+ 0000:e07b  Abs  oldmon
+ 0000:e07e  Abs  ExeFile
+ 0000:e081  Abs  move_rbuf_databuf
+ 0000:e084  Abs  move_databuf_wbuf
+ 0000:e087  Abs  phyWrite_512B
+ 0000:e08a  Abs  phyWrite_16B
+ 0000:e08d  Abs  phyRead_16B
+ 0000:e090  Abs  phyRead_512B
+ 0000:e093  Abs  PhyReadBytes
+ 0000:e096  Abs  NgffsMoveData
+ 0000:e099  Abs  disp_icon
+ 0000:e09c  Abs  downexec
+ 0000:e09f  Abs  proc_menuI

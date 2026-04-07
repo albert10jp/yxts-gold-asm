@@ -1,0 +1,13 @@
+;定义game.s中使用的一些临时变量,临时变量定义格式为 : L+模块名+变量名
+
+__base	equ	local_viarable
+	define	2,L_game_i
+	define	2,L_game_j
+	define	2,L_game_Sy
+	define	2,L_game_Sx
+	define	2,L_game_x
+	define	2,L_game_y
+	define	1,L_game_nx
+	define	1,L_game_ny
+	define	2,L_game_n
+

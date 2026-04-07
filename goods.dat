@@ -1,0 +1,451 @@
+	include h/gmud.h
+	include h/id.h
+	
+	public	goods_name_tbl
+	public	goods_attr_tbl
+;---------------------------------------------------------------
+; food drug weapon head cloth equip hand foot other
+;---------------------------------------------------------------
+goods_name_tbl:
+	if	scode
+	db	'none',0ffh
+	db	'¿¾¼¦ÍÈ',0ffh
+	db	'°ü×Ó',0ffh
+	db	'ËÖÓÍ²è',0ffh
+	db	'ôä´ä¶¹¸¯',0ffh
+	db	'ÖíÈâ',0ffh
+	db	'ÌÇºùÂ«',0ffh
+	db	'°×Óñ¶¹¸¯',0ffh
+	db	'½ð´´Ò©',0ffh
+	db	'Éú¼¡¸à',0ffh
+	db	'º£ÍâÏÉµ¤',0ffh
+	db	'¸Öµ¶',0ffh
+	db	'²Ëµ¶',0ffh
+	db	'Ø°Ê×',0ffh
+	db	'Ì´ÏãÉÈ',0ffh
+	db	'»¤ÊÖ¹³',0ffh
+	db	'É±Öíµ¶',0ffh
+	db	'³¤½£',0ffh
+	db	'·ìÒÂÕë',0ffh
+	db	'ÂéÉþ',0ffh
+	db	'Ô°¹¤¼ô',0ffh
+	db	'¸ÖÕÈ',0ffh
+	db	'³¤±Þ',0ffh
+	db	'¹íÍ·µ¶',0ffh
+	db	'×Ï½ðµ¶',0ffh
+	db	'Àæ»¨±Þ',0ffh
+	db	'·÷³¾',0ffh
+	db	'ÁøÓñµ¶',0ffh
+	db	'ºì·÷',0ffh
+	db	'°×ÓñÏô',0ffh
+	db	'»¨µûÉÈ',0ffh
+	db	'ºÓëà¶¾',0ffh
+	db	'¾«¸ÖÕÈ',0ffh
+	db	'Çà·æ½£',0ffh
+	db	'Ìú¹Õ',0ffh
+	db	'Ìú½£',0ffh
+	db	'³þåú½£',0ffh
+	db	'Äý±Ì½£',0ffh
+	db	'Ï¸½£',0ffh
+	db	'ºÚÒÂ',0ffh
+	db	'ÀÏ»¨¾µ',0ffh
+	db	'ÂÌÄµµ¤',0ffh
+	db	'²¼ÒÂ',0ffh
+	db	'¾«ÖÆ²¼ÒÂ',0ffh
+	db	'Æ¤±³ÐÄ',0ffh
+	db	'·Ûºì³ñÉÀ',0ffh
+	db	'ºì¶Å¾é',0ffh
+	db	'Ðå»¨Ð¡Ð¬',0ffh
+	db	'°×Ãµ¹å',0ffh
+	db	'²è»¨',0ffh
+	db	'Çá»¨³ñÉÀ',0ffh
+	db	'È÷»¨¶ÐÐ¬',0ffh
+	db	'±¦À¶¶ÐÉÀ',0ffh
+	db	'Ò¹ÐÐÒÂ',0ffh
+	db	'äËË®ÂÞÒÂ',0ffh
+	db	'ÇáÉ´³¤È¹',0ffh
+	db	'ºÚÑÛÕÖ',0ffh
+	db	'Åû·ç',0ffh
+	db	'ÎäµÀ·þ',0ffh
+	db	'µÀÅÛ',0ffh
+	db	'°×ÂÞÅÛ',0ffh
+	db	'³ñÅÛ',0ffh
+	db	'½ðËø×Ó¼×',0ffh
+	db	'½µÄ§ÅÛ',0ffh
+	db	'ÄÞºçÓðÒÂ',0ffh
+	db	'Ñ©É½°×ÅÛ',0ffh
+	db	'ÁÁÒø¼×',0ffh
+	db	'±ªÆ¤',0ffh
+	db	'È­¾­',0ffh
+	db	'½¹»ÆÖ½Ò³',0ffh
+	db	'¾ªÌìµ¶Æ×',0ffh
+	db	'ÊÖ³­±¾',0ffh
+	db	'Ã«±Ê',0ffh
+	db	'µö¸Ë',0ffh
+	db	'ÀðÓã',0ffh
+	db	'Å£Æ¤Êø´ø',0ffh
+	db	'ÓãÂ¨',0ffh
+	db	'Èý½ÇÊ¯°å',0ffh
+	db	'Å®¶ùºì',0ffh
+	db	'ÍÀÁúµ¶',0ffh
+	db	'Ðå»¨Õë',0ffh
+	db	'²Ë»¨±¦µä',0ffh
+	else
+	db	'none',0ffh
+	db	'¯NÂû»L',0ffh
+	db	'¥]¤l',0ffh
+	db	'¶pªo¯ù',0ffh
+	db	'»B»A¨§»G',0ffh
+	db	'½Þ¦×',0ffh
+	db	'¿}¸¬Äª',0ffh
+	db	'¥Õ¥É¨§»G',0ffh
+	db	'ª÷³ÐÃÄ',0ffh
+	db	'¥Í¦Ù»I',0ffh
+	db	'®ü¥~¥P¤¦',0ffh
+	db	'¿û¤M',0ffh
+	db	'µæ¤M',0ffh
+	db	'¤P­º',0ffh
+	db	'ÀÈ­»®°',0ffh
+	db	'Å@¤â¹_',0ffh
+	db	'±þ½Þ¤M',0ffh
+	db	'ªø¼C',0ffh
+	db	'Á_¦ç°w',0ffh
+	db	'³ÂÃ·',0ffh
+	db	'¶é¤u°Å',0ffh
+	db	'¿û§ú',0ffh
+	db	'ªøÃ@',0ffh
+	db	'°­ÀY¤M',0ffh
+	db	'µµª÷¤M',0ffh
+	db	'±ùªáÃ@',0ffh
+	db	'©Ø¹Ð',0ffh
+	db	'¬h¥É¤M',0ffh
+	db	'¬õ©Ø',0ffh
+	db	'¥Õ¥É¿½',0ffh
+	db	'ªá½º®°',0ffh
+	db	'ªe³b¬r',0ffh
+	db	'ºë¿û§ú',0ffh
+	db	'«C¾W¼C',0ffh
+	db	'ÅK©ä',0ffh
+	db	'ÅK¼C',0ffh
+	db	'·¡¦m¼C',0ffh
+	db	'¾®ºÑ¼C',0ffh
+	db	'²Ó¼C',0ffh
+	db	'¶Â¦ç',0ffh
+	db	'¦ÑªáÃè',0ffh
+	db	'ºñ¨d¤¦',0ffh
+	db	'¥¬¦ç',0ffh
+	db	'ºë¨î¥¬¦ç',0ffh
+	db	'¥Ö­I¤ß',0ffh
+	db	'¯»¬õº÷­m',0ffh
+	db	'¬õ§ùÃY',0ffh
+	db	'Â¸ªá¤p¾c',0ffh
+	db	'¥Õª´ºÀ',0ffh
+	db	'¯ùªá',0ffh
+	db	'»´ªáº÷­m',0ffh
+	db	'Ïsªá½v¾c',0ffh
+	db	'Ä_ÂÅ½v­m',0ffh
+	db	'©]¦æ¦ç',0ffh
+	db	'Õñ¤ôÃ¹¦ç',0ffh
+	db	'»´¯½ªø¸È',0ffh
+	db	'¶Â²´¸n',0ffh
+	db	'©Ü­·',0ffh
+	db	'ªZ¹DªA',0ffh
+	db	'¹D³T',0ffh
+	db	'¥ÕÃ¹³T',0ffh
+	db	'º÷³T',0ffh
+	db	'ª÷Âê¤l¥Ò',0ffh
+	db	'­°Å]³T',0ffh
+	db	'ÀO­i¦Ð¦ç',0ffh
+	db	'³·¤s¥Õ³T',0ffh
+	db	'«G»È¥Ò',0ffh
+	db	'°\¥Ö',0ffh
+	db	'®±¸g',0ffh
+	db	'µJ¶À¯È­¶',0ffh
+	db	'Åå¤Ñ¤MÃÐ',0ffh
+	db	'¤â§Û¥»',0ffh
+	db	'¤òµ§',0ffh
+	db	'³¨§ý',0ffh
+	db	'ÃU³½',0ffh
+	db	'¤û¥Ö§ô±a',0ffh
+	db	'³½ÁM',0ffh
+	db	'¤T¨¤¥ÛªO',0ffh
+	db	'¤k¨à¬õ',0ffh
+	db	'±OÀs¤M',0ffh
+	db	'Â¸ªá°w',0ffh
+	db	'µæªáÄ_¨å',0ffh
+	endif
+
+;---------------------------------------
+;type sub_type money
+;---------------------------------------
+goods_attr_tbl:
+	db	0,0,0,0,0,0,0,0	;none
+	db	FOOD_WU,0	;chicken
+	db	160,0,0,0
+	dw	30
+	db	FOOD_WU,0	;baozi
+	db	120,0,0,0
+	dw	20
+	db	FOOD_WU,0	;butter_tea
+	db	180,200,0,0
+	dw	150
+	db	FOOD_WU,0	;green_doufu
+	db	160,0,0,0
+	dw	55
+	db	FOOD_WU,0	;meat
+	db	240,0,0,0
+	dw	100
+	db	FOOD_WU,0	;tang_hulu
+	db	60,0,0,0
+	dw	50
+	db	FOOD_WU,0	;white_doufu
+	db	80,0,0,0
+	dw	35
+	db	DRUG_WU,0	;yao
+	db	1,0,0,0
+	dw	2000
+	db	DRUG_WU,0	;shengji
+	db	0,0,0,0
+	dw	3000
+	db	DRUG_WU,1	;dan
+	db	5,0,0,0
+	dw	3000
+	db	WEAPON_WU,BLADE_QI	;blade
+	db	25,0,-1,0
+	dw	600
+	db	WEAPON_WU,BLADE_QI	;kitchen_knife
+	db	17,0,0,0
+	dw	100
+	db	WEAPON_WU,SWORD_QI	;dagger
+	db	5,0,0,0
+	dw	50
+	db	WEAPON_WU,SWORD_QI	;fan
+	db	15,0,0,0
+	dw	1500
+	db	WEAPON_WU,BLADE_QI	;hock
+	db	55,5,-3,0
+	dw	30000
+	db	WEAPON_WU,BLADE_QI	;knife
+	db	25,0,0,0
+	dw	1000
+	db	WEAPON_WU,SWORD_QI	;long_sword
+	db	25,0,-1,0
+	dw	600
+	db	WEAPON_WU,SWORD_QI	;needle
+	db	10,0,0,0
+	dw	70
+	db	WEAPON_WU,WHIP_QI	;rope
+	db	1,0,0,0
+	dw	0
+	db	WEAPON_WU,SWORD_QI	;scissors
+	db	15,0,0,0
+	dw	1000
+	db	WEAPON_WU,STAFF_QI	;staff
+	db	28,0,-2,0
+	dw	700
+	db	WEAPON_WU,WHIP_QI	;whip
+	db	20,0,0,0
+	dw	500
+	db	WEAPON_WU,BLADE_QI	;gui_blade
+	db	35,3,0,0
+	dw	800
+	db	WEAPON_WU,BLADE_QI	;gold_blade
+	db	55,0,-2,0
+	dw	20000
+	db	WEAPON_WU,WHIP_QI	;flower_whip
+	db	70,0,-2,0
+	dw	100000
+	db	WEAPON_WU,WHIP_QI	;fuchen
+	db	35,0,0,0
+	dw	20000
+	db	WEAPON_WU,BLADE_QI	;lblade
+	db	40,0,-1,0
+	dw	20000
+	db	WEAPON_WU,WHIP_QI	;red_fuchen
+	db	55,0,-1,0
+	dw	40000
+	db	WEAPON_WU,SWORD_QI	;xiao
+	db	15,0,0,0
+	dw	5500
+	db	WEAPON_WU,BLADE_QI	;flower_fan
+	db	35,0,0,0
+	dw	75000
+	db	WEAPON_WU,BLADE_QI	;hetun_blade
+	db	55,0,-2,0
+	dw	50000
+	db	WEAPON_WU,STAFF_QI	;gang_zhang
+	db	35,0,0,0
+	dw	5000
+	db	WEAPON_WU,SWORD_QI	;qingfeng_sword
+	db	65,0,0,0
+	dw	7000
+	db	WEAPON_WU,STAFF_QI	;tie_guai
+	db	20,0,0,0
+	dw	1000
+	db	WEAPON_WU,SWORD_QI	;tie_sword
+	db	30,0,0,0
+	dw	1000
+	db	WEAPON_WU,SWORD_QI	;chufei_sword
+	db	45,0,0,0
+	dw	10000
+	db	WEAPON_WU,SWORD_QI	;ningbi_sword
+	db	60,0,0,0
+	dw	30000
+	db	WEAPON_WU,SWORD_QI	;xi_jian
+	db	30,0,0,0
+	dw	700
+	db	EQUIP_WU,CLOTH_ARM	;black_cloth
+	db	45,0,3,0
+	dw	50000
+	db	EQUIP_WU,HEAD_ARM	;glasses
+	db	0,0,0,0
+	dw	100
+	db	EQUIP_WU,HEAD_ARM	;green_flower
+	db	0,0,0,0
+	dw	20
+	db	EQUIP_WU,CLOTH_ARM	;cloth
+	db	5,0,0,0
+	dw	8
+	db	EQUIP_WU,CLOTH_ARM	;fine_cloth
+	db	15,0,0,0
+	dw	500
+	db	EQUIP_WU,ARMOR_ARM	;beixin
+	db	15,0,-1,0
+	dw	1000
+	db	EQUIP_WU,CLOTH_ARM	;pink_cloth
+	db	10,0,0,0
+	dw	600
+	db	EQUIP_WU,HEAD_ARM	;red_flower
+	db	0,0,0,0
+	dw	20
+	db	EQUIP_WU,BOOTS_ARM	;shoes
+	db	5,0,0,0
+	dw	300
+	db	EQUIP_WU,HEAD_ARM	;white_rose
+	db	0,0,0,0
+	dw	20
+	db	EQUIP_WU,HEAD_ARM	;tea_flower
+	db	0,0,0,0
+	dw	40
+	db	EQUIP_WU,CLOTH_ARM	;fcloth
+	db	8,0,0,0
+	dw	100
+	db	EQUIP_WU,BOOTS_ARM	;fshoes
+	db	10,0,3,0
+	dw	300
+	db	EQUIP_WU,CLOTH_ARM	;silk_cloth
+	db	0,0,10,0
+	dw	300
+	db	EQUIP_WU,CLOTH_ARM	;night_cloth
+	db	0,0,6,0
+	dw	80000
+	db	EQUIP_WU,CLOTH_ARM	;fancy_skirt
+	db	10,0,5,0
+	dw	1500
+	db	EQUIP_WU,CLOTH_ARM	;skirt
+	db	1,0,0,0
+	dw	10
+	db	EQUIP_WU,HEAD_ARM	;eye_patch
+	db	3,3,0,0
+	dw	100
+	db	EQUIP_WU,SURCOAT_ARM	;pifeng
+	db	5,0,2,0
+	dw	2000
+	db	EQUIP_WU,CLOTH_ARM	;martial_cloth
+	db	5,5,0,0
+	dw	500
+	db	EQUIP_WU,CLOTH_ARM	;taoist_cloth
+	db	5,0,0,0
+	dw	300
+	db	EQUIP_WU,CLOTH_ARM	;baipao
+	db	15,0,0,0
+	dw	400
+	db	EQUIP_WU,CLOTH_ARM	;choupao
+	db	4,0,0,0
+	dw	600
+	db	EQUIP_WU,ARMOR_ARM	;gold_armor
+	db	60,0,-5,0
+	dw	10000
+	db	EQUIP_WU,ARMOR_ARM	;xiangmo_pao
+	db	10,0,5,0
+	dw	2000
+	db	EQUIP_WU,CLOTH_ARM	;nihong_yuyi
+	db	10,0,8,0
+	dw	3000
+	db	EQUIP_WU,CLOTH_ARM	;snow_baipao
+	db	4,0,0,0
+	dw	600
+	db	EQUIP_WU,ARMOR_ARM	;silver_armor
+	db	45,0,-3,0
+	dw	5000
+	db	EQUIP_WU,ARMOR_ARM	;baopi
+	db	40,0,0,0
+	dw	5000
+	db	BOOK_WU,0	;hand_book
+	dw	book1_skill,0
+	dw	500
+	db	BOOK_WU,0	;yellow_paper
+	dw	book2_skill,0
+	dw	150
+	db	BOOK_WU,0	;blade_book
+	dw	book3_skill,0
+	dw	150
+	db	BOOK_WU,0	;force_book
+	dw	book4_skill,0
+	dw	100
+	db	OTHER_WU,0	;brush
+	db	0,0,0,0
+	dw	50
+	db	EQUIP_WU,HANDS_ARM	;diaogan
+	db	0,0,0,0
+	dw	300
+	db	FOOD_WU,0	;fish
+	db	250,0,0,0
+	dw	250
+	db	EQUIP_WU,WAIST_ARM	;skin_belt
+	db	2,0,2,0
+	dw	5000
+	db	OTHER_WU,0	;yulou
+	db	0,0,0,0
+	dw	100
+	db	OTHER_WU,0	;sanjiao
+	db	0,0,0,0
+	dw	0
+	db	OTHER_WU,0	;meijiu
+	db	0,0,0,0
+	dw	380
+	db	WEAPON_WU,BLADE_QI	;tulong
+	db	88,5,-10,0
+	dw	30000
+	db	WEAPON_WU,SWORD_QI	;needle
+	db	99,10,5,0
+	dw	50000
+	db	BOOK_WU,0	;baodian
+	dw	book5_skill,0
+	dw	0
+	db	0ffh
+	
+;----------------------------------------------	;
+; skill_name cost max_skill 0
+; exp_required 
+;----------------------------------------------
+book1_skill:
+	db	2
+	db	BASIC_PARRY_KF,250
+	db	MENGHU_KF,200
+book2_skill:
+	db	2
+	db	BASIC_BARE_KF,250
+	db	BASIC_DODGE_KF,250
+book3_skill:
+	db	2
+	db	BASIC_BLADE_KF,250
+	db	YIDAO_KF,200
+book4_skill:
+	db	2
+	db	BASIC_FORCE_KF,250
+	db	SANHUA_KF,200
+book5_skill:
+	db	2
+	db	LOOKS_KF,250
+	db	XI_KF,100

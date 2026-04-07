@@ -1,0 +1,31 @@
+;!!must not end with "end"
+
+nakelu:
+	db	'那可露',0,0,0
+	db	0,TRADE_PAI,1,37
+	db	0,0,0,0
+	dd	5000
+	dw	0
+	db	16,24,25,21,27,22
+	dw	370,370,200,200,370
+	db	0
+	db	PINK_CLOTH|80h
+	db	SHOES|80h
+	db	0
+	db	0
+	dw	1000
+	db	0
+	db	0
+	db	0
+	db	0
+	db	0
+	db	4
+	db	BASIC_PARRY_KF,40
+	db	BASIC_BARE_KF,20
+	db	BASIC_DODGE_KF,50
+	db	BASIC_FORCE_KF,30
+	db	2
+	db	WHITE_DOUFU
+	db	GREEN_DOUFU
+	db	'阿庆嫂开了家豆腐店,别看她年过三十可风韵犹存,不少人想吃她的豆腐呢.',0
+boy:

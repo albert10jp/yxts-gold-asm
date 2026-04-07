@@ -1,0 +1,435 @@
+goods.dat start pc:3800 length:4d8
+skill.dat start pc:3cd8 length:2bb
+a.s start pc:4000 length:10
+unr_sys.s start pc:4010 length:0
+pyh_quest.s start pc:4010 length:506
+lee1.s start pc:4516 length:6d0
+game.s start pc:4be6 length:9b3
+gmud.s start pc:5599 length:249
+task.s start pc:57e2 length:e86
+skill.s start pc:6668 length:971
+goods.s start pc:6fd9 length:4ed
+npc_quest.s start pc:74c6 length:16a
+qlist.s start pc:7630 length:a3
+stringx.s start pc:76d3 length:646
+aux.s start pc:7d19 length:2bf
+talk.s start pc:7fd8 length:446
+npc.s start pc:841e length:978
+pyh.s start pc:8d96 length:496
+inputx.s start pc:922c length:1f0
+tools.s start pc:941c length:811
+null.s start pc:9c2d length:0
+aux2.s start pc:a100 length:36
+lee3.s start pc:a136 length:be
+math.s start pc:a1f4 length:34d
+draw.s start pc:a541 length:56f
+mxxtbl.s start pc:aab0 length:a0
+lcd.s start pc:ab50 length:149
+font.s start pc:ac99 length:ad
+system.s start pc:ad46 length:23a
+menu.s start pc:af80 length:8b9
+digit.s start pc:b839 length:21b
+s_read.s start pc:ba54 length:2a1
+bank2.s start pc:bcf5 length:ee
+lee_block.s start pc:bde3 length:208
+null2.s start pc:bfeb length:0
+
+  Address         Publics by Name
+
+ 0000:e051  Abs  Adj_Volume
+ 0000:e07e  Abs  ExeFile
+ 0000:e096  Abs  NgffsMoveData
+ 0000:e093  Abs  PhyReadBytes
+ 0000:e05d  Abs  ProcKey
+ 0000:e060  Abs  Proc_Key
+ 0000:e04e  Abs  TTS_Reset
+ 0000:e048  Abs  TTS_Sleep
+ 0000:e04b  Abs  TTS_Wakeup
+ 0000:e066  Abs  TwoHz
+ 0000:73f6       add_goods
+ 0000:6c47       add_kf
+ 0000:9989       adjust_status
+ 0000:bcff       bank_serve
+ 0000:e015  Abs  bell
+ 0000:e006  Abs  bin2digit
+ 0000:a6ac       block_draw
+ 0000:e063  Abs  case
+ 0000:76d3       cat_string
+ 0000:9a35       change_map
+ 0000:9804       check_hit
+ 0000:6baf       check_skill
+ 0000:83d1       check_stat
+ 0000:a1e0       clean_list_right
+ 0000:a9db       clear_nline
+ 0000:aa13       clear_nline2
+ 0000:e024  Abs  cspeed
+ 0000:48d8       dazuo
+ 0000:67ab       dazuo_cmd
+ 0000:af25       delay_160_ms
+ 0000:af2a       delay_1_sec
+ 0000:e02a  Abs  delay_time
+ 0000:e02d  Abs  delay_time1
+ 0000:e03c  Abs  disable_dac_out
+ 0000:e099  Abs  disp_icon
+ 0000:a32e       divid2
+ 0000:a3df       divid4
+ 0000:a379       divid42
+ 0000:a312       divid_ax
+ 0000:803a       do_netfight
+ 0000:e09c  Abs  downexec
+ 0000:e039  Abs  enable_dac_out
+ 0000:e009  Abs  enter_sleep
+ 0000:e00c  Abs  enter_sleepz
+ 0000:4cfa       exit_game
+ 0000:7458       find_goods
+ 0000:7d19       find_index
+ 0000:a136       find_kf
+ 0000:7d40       find_name
+ 0000:8b5e       find_npc_kf
+ 0000:5949       find_quest_id
+ 0000:4134       fishing
+ 0000:ace2       flash_cursor
+ 0000:76f8       format_string
+ 0000:4be6       game
+ 0000:e05a  Abs  get_8x8_font
+ 0000:7e5b       get_all_goods
+ 0000:7630       get_all_npc
+ 0000:6c14       get_basic_kf
+ 0000:7438       get_goods_attr
+ 0000:742c       get_goods_name
+ 0000:abb6       get_img_data
+ 0000:abcc       get_img_data_fast
+ 0000:6c83       get_kf_attr
+ 0000:6c6b       get_kf_name
+ 0000:e072  Abs  get_next_data
+ 0000:8b03       get_npc_name
+ 0000:8b15       get_pai_name
+ 0000:6c77       get_pf_name
+ 0000:ab64       get_player
+ 0000:ab50       get_player_img
+ 0000:6c9b       get_skill_desc
+ 0000:7c45       get_text_data
+ 0000:6c2a       get_weapon_kf
+ 0000:aef3       getms
+ 0000:af04       gettime
+ 0000:e075  Abs  getunicode
+ 0000:5599       gmud
+ 0000:3a2e       goods_attr_tbl
+ 0000:3800       goods_name_tbl
+ 0000:e069  Abs  gysdata
+ 0000:4557       heal
+ 0000:6802       improve_skill
+ 0000:5e1e       init_ghost
+ 0000:9bfa       init_map
+ 0000:8448       init_npc
+ 0000:922c       input_digit
+ 0000:e036  Abs  isdigit
+ 0000:4877       jiali
+ 0000:e018  Abs  key_click_bell
+ 0000:3e56       kf_attr_tbl
+ 0000:3cd8       kf_name_tbl
+ 0000:aab0       lcd_start_addr_tbl
+ 0000:ac44       lcd_to_scroll
+ 0000:bde3       lee_block
+ 0000:a541       line_draw
+ 0000:a152       list_menu
+ 0000:e078  Abs  log_to_ph
+ 0000:9791       main_move
+ 0000:941c       make_ground
+ 0000:8a58       master1
+ 0000:7ac6       message_box
+ 0000:7b29       message_box_for_pyh
+ 0000:7acc       message_box_more
+ 0000:9999       message_loop
+ 0000:980f       move_blak
+ 0000:e084  Abs  move_databuf_wbuf
+ 0000:e081  Abs  move_rbuf_databuf
+ 0000:e057  Abs  move_to_ram
+ 0000:e027  Abs  mspeed
+ 0000:e01b  Abs  mspeed4
+ 0000:a100       mud_proc_key
+ 0000:a1f4       mul10
+ 0000:a23e       mul2
+ 0000:a287       mul4
+ 0000:a217       mul_ax
+ 0000:841e       npc_action
+ 0000:74c6       npc_quest
+ 0000:7fd8       object_say
+ 0000:e07b  Abs  oldmon
+ 0000:e045  Abs  out_celp_data
+ 0000:a46e       percent
+ 0000:a4e3       perform_random_it
+ 0000:3f7a       pf_attr_tbl
+ 0000:3eaa       pf_name_tbl
+ 0000:e08d  Abs  phyRead_16B
+ 0000:e090  Abs  phyRead_512B
+ 0000:e08a  Abs  phyWrite_16B
+ 0000:e087  Abs  phyWrite_512B
+ 0000:407c       pichai
+ 0000:e06c  Abs  playdt
+ 0000:af80       pop_menu
+ 0000:66f9       practice_cmd
+ 0000:e09f  Abs  proc_menuI
+ 0000:ad9c       proc_sys_event
+ 0000:8ebf       pyh_learn
+ 0000:8d96       pyh_practice
+ 0000:57e2       pyh_task
+ 0000:8b21       query_npc_skill
+ 0000:6b67       query_skill
+ 0000:a48b       random_it
+ 0000:9a9d       random_map
+ 0000:46dc       recover
+ 0000:57db       refresh_scroll
+ 0000:ad46       release_key
+ 0000:4010       saodi
+ 0000:ac58       scroll_to_lcd
+ 0000:e06f  Abs  set_alarm_on
+ 0000:7132       set_all_goods
+ 0000:8402       set_die_stat
+ 0000:af2f       set_get_buf
+ 0000:83f5       set_live_stat
+ 0000:7e1e       set_obj
+ 0000:593a       set_quest_over
+ 0000:af56       set_read_buf
+ 0000:4e36       set_small_font
+ 0000:ada2       set_tba_buffer
+ 0000:aefa       setms
+ 0000:684e       setup_attr
+ 0000:b921       show_block
+ 0000:619e       show_bonus
+ 0000:7b64       show_box
+ 0000:b839       show_digit
+ 0000:4f87       show_game_menu
+ 0000:6fd9       show_goods
+ 0000:b90d       show_line
+ 0000:afca       show_menu_txt
+ 0000:7bf4       show_one_line
+ 0000:68bd       show_perform
+ 0000:9791       show_player
+ 0000:7d5d       show_process
+ 0000:6956       show_skills
+ 0000:7bb0       show_string
+ 0000:8372       show_talk_msg
+ 0000:836e       show_talk_msg0
+ 0000:4516       show_text
+ 0000:e021  Abs  speed5
+ 0000:e01e  Abs  speed7
+ 0000:ba66       speed_read
+ 0000:ba54       speed_read_2
+ 0000:a667       square_draw
+ 0000:e00f  Abs  start_4ch
+ 0000:e03f  Abs  start_sound
+ 0000:e012  Abs  stop_4ch
+ 0000:e042  Abs  stop_sound
+ 0000:6668       study_cmd
+ 0000:4046       tiaoshui
+ 0000:a6e4       w_block0
+ 0000:e033  Abs  wait_160_ms
+ 0000:e030  Abs  wait_1_sec
+ 0000:af78       wait_cr_key
+ 0000:e054  Abs  wait_dsp1_ready
+ 0000:ad59       wait_key
+ 0000:af0f       waittime
+ 0000:af12       waittime1
+ 0000:a6f7       write_block0
+ 0000:ac99       write_one_char
+
+  Address         Publics by Value
+
+ 0000:3800       goods_name_tbl
+ 0000:3a2e       goods_attr_tbl
+ 0000:3cd8       kf_name_tbl
+ 0000:3e56       kf_attr_tbl
+ 0000:3eaa       pf_name_tbl
+ 0000:3f7a       pf_attr_tbl
+ 0000:4010       saodi
+ 0000:4046       tiaoshui
+ 0000:407c       pichai
+ 0000:4134       fishing
+ 0000:4516       show_text
+ 0000:4557       heal
+ 0000:46dc       recover
+ 0000:4877       jiali
+ 0000:48d8       dazuo
+ 0000:4be6       game
+ 0000:4cfa       exit_game
+ 0000:4e36       set_small_font
+ 0000:4f87       show_game_menu
+ 0000:5599       gmud
+ 0000:57db       refresh_scroll
+ 0000:57e2       pyh_task
+ 0000:593a       set_quest_over
+ 0000:5949       find_quest_id
+ 0000:5e1e       init_ghost
+ 0000:619e       show_bonus
+ 0000:6668       study_cmd
+ 0000:66f9       practice_cmd
+ 0000:67ab       dazuo_cmd
+ 0000:6802       improve_skill
+ 0000:684e       setup_attr
+ 0000:68bd       show_perform
+ 0000:6956       show_skills
+ 0000:6b67       query_skill
+ 0000:6baf       check_skill
+ 0000:6c14       get_basic_kf
+ 0000:6c2a       get_weapon_kf
+ 0000:6c47       add_kf
+ 0000:6c6b       get_kf_name
+ 0000:6c77       get_pf_name
+ 0000:6c83       get_kf_attr
+ 0000:6c9b       get_skill_desc
+ 0000:6fd9       show_goods
+ 0000:7132       set_all_goods
+ 0000:73f6       add_goods
+ 0000:742c       get_goods_name
+ 0000:7438       get_goods_attr
+ 0000:7458       find_goods
+ 0000:74c6       npc_quest
+ 0000:7630       get_all_npc
+ 0000:76d3       cat_string
+ 0000:76f8       format_string
+ 0000:7ac6       message_box
+ 0000:7acc       message_box_more
+ 0000:7b29       message_box_for_pyh
+ 0000:7b64       show_box
+ 0000:7bb0       show_string
+ 0000:7bf4       show_one_line
+ 0000:7c45       get_text_data
+ 0000:7d19       find_index
+ 0000:7d40       find_name
+ 0000:7d5d       show_process
+ 0000:7e1e       set_obj
+ 0000:7e5b       get_all_goods
+ 0000:7fd8       object_say
+ 0000:803a       do_netfight
+ 0000:836e       show_talk_msg0
+ 0000:8372       show_talk_msg
+ 0000:83d1       check_stat
+ 0000:83f5       set_live_stat
+ 0000:8402       set_die_stat
+ 0000:841e       npc_action
+ 0000:8448       init_npc
+ 0000:8a58       master1
+ 0000:8b03       get_npc_name
+ 0000:8b15       get_pai_name
+ 0000:8b21       query_npc_skill
+ 0000:8b5e       find_npc_kf
+ 0000:8d96       pyh_practice
+ 0000:8ebf       pyh_learn
+ 0000:922c       input_digit
+ 0000:941c       make_ground
+ 0000:9791       main_move
+ 0000:9791       show_player
+ 0000:9804       check_hit
+ 0000:980f       move_blak
+ 0000:9989       adjust_status
+ 0000:9999       message_loop
+ 0000:9a35       change_map
+ 0000:9a9d       random_map
+ 0000:9bfa       init_map
+ 0000:a100       mud_proc_key
+ 0000:a136       find_kf
+ 0000:a152       list_menu
+ 0000:a1e0       clean_list_right
+ 0000:a1f4       mul10
+ 0000:a217       mul_ax
+ 0000:a23e       mul2
+ 0000:a287       mul4
+ 0000:a312       divid_ax
+ 0000:a32e       divid2
+ 0000:a379       divid42
+ 0000:a3df       divid4
+ 0000:a46e       percent
+ 0000:a48b       random_it
+ 0000:a4e3       perform_random_it
+ 0000:a541       line_draw
+ 0000:a667       square_draw
+ 0000:a6ac       block_draw
+ 0000:a6e4       w_block0
+ 0000:a6f7       write_block0
+ 0000:a9db       clear_nline
+ 0000:aa13       clear_nline2
+ 0000:aab0       lcd_start_addr_tbl
+ 0000:ab50       get_player_img
+ 0000:ab64       get_player
+ 0000:abb6       get_img_data
+ 0000:abcc       get_img_data_fast
+ 0000:ac44       lcd_to_scroll
+ 0000:ac58       scroll_to_lcd
+ 0000:ac99       write_one_char
+ 0000:ace2       flash_cursor
+ 0000:ad46       release_key
+ 0000:ad59       wait_key
+ 0000:ad9c       proc_sys_event
+ 0000:ada2       set_tba_buffer
+ 0000:aef3       getms
+ 0000:aefa       setms
+ 0000:af04       gettime
+ 0000:af0f       waittime
+ 0000:af12       waittime1
+ 0000:af25       delay_160_ms
+ 0000:af2a       delay_1_sec
+ 0000:af2f       set_get_buf
+ 0000:af56       set_read_buf
+ 0000:af78       wait_cr_key
+ 0000:af80       pop_menu
+ 0000:afca       show_menu_txt
+ 0000:b839       show_digit
+ 0000:b90d       show_line
+ 0000:b921       show_block
+ 0000:ba54       speed_read_2
+ 0000:ba66       speed_read
+ 0000:bcff       bank_serve
+ 0000:bde3       lee_block
+ 0000:e006  Abs  bin2digit
+ 0000:e009  Abs  enter_sleep
+ 0000:e00c  Abs  enter_sleepz
+ 0000:e00f  Abs  start_4ch
+ 0000:e012  Abs  stop_4ch
+ 0000:e015  Abs  bell
+ 0000:e018  Abs  key_click_bell
+ 0000:e01b  Abs  mspeed4
+ 0000:e01e  Abs  speed7
+ 0000:e021  Abs  speed5
+ 0000:e024  Abs  cspeed
+ 0000:e027  Abs  mspeed
+ 0000:e02a  Abs  delay_time
+ 0000:e02d  Abs  delay_time1
+ 0000:e030  Abs  wait_1_sec
+ 0000:e033  Abs  wait_160_ms
+ 0000:e036  Abs  isdigit
+ 0000:e039  Abs  enable_dac_out
+ 0000:e03c  Abs  disable_dac_out
+ 0000:e03f  Abs  start_sound
+ 0000:e042  Abs  stop_sound
+ 0000:e045  Abs  out_celp_data
+ 0000:e048  Abs  TTS_Sleep
+ 0000:e04b  Abs  TTS_Wakeup
+ 0000:e04e  Abs  TTS_Reset
+ 0000:e051  Abs  Adj_Volume
+ 0000:e054  Abs  wait_dsp1_ready
+ 0000:e057  Abs  move_to_ram
+ 0000:e05a  Abs  get_8x8_font
+ 0000:e05d  Abs  ProcKey
+ 0000:e060  Abs  Proc_Key
+ 0000:e063  Abs  case
+ 0000:e066  Abs  TwoHz
+ 0000:e069  Abs  gysdata
+ 0000:e06c  Abs  playdt
+ 0000:e06f  Abs  set_alarm_on
+ 0000:e072  Abs  get_next_data
+ 0000:e075  Abs  getunicode
+ 0000:e078  Abs  log_to_ph
+ 0000:e07b  Abs  oldmon
+ 0000:e07e  Abs  ExeFile
+ 0000:e081  Abs  move_rbuf_databuf
+ 0000:e084  Abs  move_databuf_wbuf
+ 0000:e087  Abs  phyWrite_512B
+ 0000:e08a  Abs  phyWrite_16B
+ 0000:e08d  Abs  phyRead_16B
+ 0000:e090  Abs  phyRead_512B
+ 0000:e093  Abs  PhyReadBytes
+ 0000:e096  Abs  NgffsMoveData
+ 0000:e099  Abs  disp_icon
+ 0000:e09c  Abs  downexec
+ 0000:e09f  Abs  proc_menuI

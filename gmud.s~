@@ -1,0 +1,370 @@
+;;******************************************************************
+;;	gmud.s - ggv MUD engine
+;;
+;;	written by lian
+;;	begin on 2001/03/13
+;;	finish on
+;;
+;;     ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+;;     ┃ 	高尚是高尚者的墓志铭,卑鄙是卑鄙者的通行证      ┃
+;;     ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+;;
+;;*******************************************************************
+	include	h/gmud.h
+	include	h/func.mac
+	include	h/id.h
+	include	h/mud_funcs.h
+
+	public	gmud
+	public	refresh_scroll
+
+	extrn	release_key
+	extrn	adjust_status
+	extrn	move_blak
+	extrn	main_move
+	extrn	check_hit
+	extrn	show_player
+	extrn	message_loop
+	extrn	init_map
+	extrn	scroll_to_lcd
+
+	extrn	object_say
+	extrn	show_game_menu
+
+	extrn	wait_key
+
+	extrn	bank_serve
+
+;;************************************************************************
+gmud:
+	;速度可选值: 1,2,4,8,16,32
+	lm	G_role_speed,#8
+	lm	G_role_status,#0
+	sta	G_role_way
+	
+	lm2	G_Base_Map,#0	;从bank起始处开始存放
+	lda	#4
+	sta	G_map_bank
+	jsr	init_map
+
+wait_for_key:
+	jsr	main_move
+	lm	walking,#1
+	jsr	wait_key
+	SWITCH	#mud_cmd_len,mud_cmd
+wait1:	
+	jmp	wait_for_key
+
+mud_cmd:
+	db	CR_KEY
+	db	LEFT_KEY
+	db	RIGHT_KEY
+	db	UP_KEY
+	db	DOWN_KEY
+	db	F1_KEY
+	db	F4_KEY
+	db	NAOZHONG_FUN
+	db	UPREC_KEY
+	db	DOWNREC_KEY
+
+	db	F3_KEY
+	
+mud_cmd_len	equ	$-mud_cmd
+mud_cmd_proc:	
+	dw	proc_cr
+	dw	proc_left
+	dw	proc_right
+	dw	proc_up
+	dw	proc_down
+	dw	proc_speed
+	dw	proc_main
+	dw	proc_main
+	dw	proc_uprec
+	dw	proc_downrec
+	
+	dw	proc_cheat
+mud_proc_len	equ	$-mud_cmd_proc
+
+;-------------------------------------------
+proc_speed:
+	rts
+
+;---------------------------------------
+proc_cheat:
+	lda	cheat_mode
+	beq	proc_cheat1
+	BK2_FUN	_Fcheat
+proc_cheat1:	
+	rts
+;---------------------------------------
+proc_main:
+	jsr	show_game_menu
+	rts
+
+;---------------------------------------
+proc_downrec:
+	rts
+
+;---------------------------------------
+proc_uprec:
+	rts
+
+;---------------------------------------
+proc_cr:
+	jsr	check_hit
+	bcc	cr_rts
+	jsr	object_say
+cr_rts:
+	rts
+
+;---------------------------------------
+proc_up:
+	lm	G_role_way,#3
+	jsr	move_blak
+	bcs	up_key_rts
+	
+	jsr	up_one
+	jsr	delay
+	jsr	up_one
+	lm	key,#0
+	jsr	delay
+	jsr	up_one
+	jsr	delay
+	jsr	up_one
+	jmp	message_loop
+up_one:
+	lda	G_Sy
+	beq	is_up_key_1
+
+	cmp1	G_role_Y,#24
+	bgt	is_up_key_1
+	
+	lda	G_Dy
+	sec
+	;sbc	#8
+	sbc	G_role_speed
+	sta	G_Dy
+	bcs	up_key_rts
+
+	;lm	G_Dy,#24
+	lda	#Unit_Height
+	sec
+	sbc	G_role_speed
+	sta	G_Dy
+
+	bne	not_set_maxy
+	lda	#Unit_Height
+	sta	G_Dy
+not_set_maxy:
+
+	dec	G_Sy
+	jmp	up_key_rts
+
+
+is_up_key_1:
+	lda	G_Sy
+	bne	is_up_key_2
+
+	lda	G_Dy
+	beq	is_up_key_2
+
+	sec
+	;sbc	#8
+	sbc	G_role_speed
+	sta	G_Dy
+	jmp	up_key_rts
+
+is_up_key_2:
+	lda	G_role_Y
+	sec
+	sbc	G_role_speed
+	bcs	is_up_key_3
+	lda	#0
+is_up_key_3:
+	sta	G_role_Y
+
+up_key_rts:
+	jsr	adjust_status
+	jsr	show_player
+	jsr	release_key
+	rts
+
+delay:
+	ldx	man_daode
+	ldy	#0
+delay1:	
+	iny
+	bne	delay1
+	dex
+	bne	delay1
+	rts
+
+;---------------------------------------
+proc_down:
+	lm	G_role_way,#0
+	jsr	move_blak
+	bcs	down_key_rts
+	
+	jsr	down_one
+	jsr	delay
+	jsr	down_one
+	lm	key,#0
+	jsr	delay
+	jsr	down_one
+	jsr	delay
+	jsr	down_one
+	jmp	message_loop
+down_one:	
+	lda	G_Map_Height
+	sec
+	sbc	#ScreenY_Num
+	cmp	G_Sy
+	bcc	is_down_key_1
+	beq	is_down_key_1
+
+	cmp1	G_role_Y,#ScreenY-Role_Height-16
+	bcc	is_down_key_1
+
+	clc
+	lda	G_Dy
+	;adc	#8
+	adc	G_role_speed
+	sta	G_Dy
+	cmp	#32
+	bcc	down_key_rts
+
+	lm	G_Dy,#0
+	inc	G_Sy
+	jmp	down_key_rts
+
+is_down_key_1:
+	lda	G_role_Y
+	clc
+	adc	G_role_speed
+	sta	G_role_Y
+
+down_key_rts:
+	jmp	up_key_rts
+;---------------------------------------
+proc_left:
+	lm	G_role_way,#1
+	jsr	move_blak
+	bcs	left_key_rts
+
+	jsr	left_one
+	jsr	delay
+	jsr	left_one
+	lm	key,#0
+	jsr	delay
+	jsr	left_one
+	jsr	delay
+	jsr	left_one
+	jmp	message_loop
+left_one:
+	lda	G_Sx
+	beq	left_key_1
+
+	cmp1	G_role_X,#ScreenX_Num/2*Unit_Width-8
+	bgt	left_key_1
+
+	lda	G_Dx
+	sec
+	;sbc	#8
+	sbc	G_role_speed
+	sta	G_Dx
+	bcs	left_key_rts
+
+	;lm	G_Dx,#24
+	lda	#Unit_Width
+	sec
+	sbc	G_role_speed
+	sta	G_Dx
+
+	bne	not_set_maxx
+	lda	#Unit_Width
+	sta	G_Dx
+not_set_maxx:
+
+	dec	G_Sx
+	jmp	left_key_rts
+
+left_key_1:
+	lda	G_Sx
+	bne	left_key_2
+
+	lda	G_Dx
+	beq	left_key_2
+
+	lda	G_Dx
+	sec
+	;sbc	#8
+	sbc	G_role_speed
+	sta	G_Dx
+	jmp	left_key_rts
+
+left_key_2:
+	lda	G_role_X
+	sec
+	sbc	G_role_speed
+	bcs	is_left_key_3
+	lda	#0
+
+is_left_key_3:
+	sta	G_role_X
+
+left_key_rts:
+	jmp	up_key_rts
+;---------------------------------------
+proc_right:
+	lm	G_role_way,#2
+	jsr	move_blak
+	bcs	right_key_rts
+
+	jsr	right_one
+	jsr	delay
+	jsr	right_one
+	lm	key,#0
+	jsr	delay
+	jsr	right_one
+	jsr	delay
+	jsr	right_one
+	jmp	message_loop
+right_one:
+	lda	G_Map_Width
+	sec
+	sbc	#ScreenX_Num
+	cmp	G_Sx
+	bcc	is_right_key_1
+	beq	is_right_key_1
+
+	cmp1	G_role_X,#ScreenX_Num/2*Unit_Width-8
+	bcc	is_right_key_1
+
+	clc
+	lda	G_Dx
+	;adc	#8
+	adc	G_role_speed
+	sta	G_Dx
+	cmp	#32
+	bcc	right_key_rts
+
+	lm	G_Dx,#0
+	inc	G_Sx
+	jmp	right_key_rts
+
+is_right_key_1:
+	lda	G_role_X
+	clc
+	adc	G_role_speed
+	sta	G_role_X
+
+right_key_rts:
+	jmp	up_key_rts
+
+refresh_scroll:
+	jsr	main_move
+	jsr	scroll_to_lcd
+	rts
+
+;---------------------------------------------------------------
+	end

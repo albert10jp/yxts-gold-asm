@@ -1,0 +1,9 @@
+ScreenX		equ	160		;屏幕宽
+ScreenY		equ	160		;屏幕高
+Unit_Width	equ	32		;单元的宽
+Unit_Height	equ	32		;单元的高
+
+Role_Width	equ	32		;主角的宽度
+Role_Height	equ	48		;主角的高度
+ScreenX_Num	equ	ScreenX/Unit_Width		;每行的单元数
+ScreenY_Num	equ	ScreenY/Unit_Height		;每列的单元数

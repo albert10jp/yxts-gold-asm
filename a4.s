@@ -1,0 +1,3 @@
+	extrn	cheat
+
+	dw	cheat

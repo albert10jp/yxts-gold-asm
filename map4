@@ -1,0 +1,266 @@
+goods.dat start pc:3800 length:4d8
+skill.dat start pc:3cd8 length:2bb
+a4.s start pc:4000 length:2
+unr_sys.s start pc:4002 length:0
+cheat.s start pc:4002 length:3ad
+stringy.s start pc:43af length:3c5
+aux2.s start pc:a100 length:36
+lee3.s start pc:a136 length:be
+math.s start pc:a1f4 length:34d
+draw.s start pc:a541 length:56f
+mxxtbl.s start pc:aab0 length:a0
+lcd.s start pc:ab50 length:149
+font.s start pc:ac99 length:ad
+system.s start pc:ad46 length:23a
+menu.s start pc:af80 length:8b9
+digit.s start pc:b839 length:21b
+s_read.s start pc:ba54 length:2a1
+bank2.s start pc:bcf5 length:ee
+lee_block.s start pc:bde3 length:208
+null2.s start pc:bfeb length:0
+
+  Address         Publics by Name
+
+ 0000:e051  Abs  Adj_Volume
+ 0000:e07e  Abs  ExeFile
+ 0000:e096  Abs  NgffsMoveData
+ 0000:e093  Abs  PhyReadBytes
+ 0000:e05d  Abs  ProcKey
+ 0000:e060  Abs  Proc_Key
+ 0000:e04e  Abs  TTS_Reset
+ 0000:e048  Abs  TTS_Sleep
+ 0000:e04b  Abs  TTS_Wakeup
+ 0000:e066  Abs  TwoHz
+ 0000:bcff       bank_serve
+ 0000:e015  Abs  bell
+ 0000:e006  Abs  bin2digit
+ 0000:a6ac       block_draw
+ 0000:e063  Abs  case
+ 0000:4002       cheat
+ 0000:a1e0       clean_list_right
+ 0000:a9db       clear_nline
+ 0000:aa13       clear_nline2
+ 0000:e024  Abs  cspeed
+ 0000:af25       delay_160_ms
+ 0000:af2a       delay_1_sec
+ 0000:e02a  Abs  delay_time
+ 0000:e02d  Abs  delay_time1
+ 0000:e03c  Abs  disable_dac_out
+ 0000:e099  Abs  disp_icon
+ 0000:a32e       divid2
+ 0000:a3df       divid4
+ 0000:a379       divid42
+ 0000:a312       divid_ax
+ 0000:e09c  Abs  downexec
+ 0000:e039  Abs  enable_dac_out
+ 0000:e009  Abs  enter_sleep
+ 0000:e00c  Abs  enter_sleepz
+ 0000:a136       find_kf
+ 0000:ace2       flash_cursor
+ 0000:43af       format_string
+ 0000:e05a  Abs  get_8x8_font
+ 0000:abb6       get_img_data
+ 0000:abcc       get_img_data_fast
+ 0000:e072  Abs  get_next_data
+ 0000:ab64       get_player
+ 0000:ab50       get_player_img
+ 0000:aef3       getms
+ 0000:af04       gettime
+ 0000:e075  Abs  getunicode
+ 0000:3a2e       goods_attr_tbl
+ 0000:3800       goods_name_tbl
+ 0000:e069  Abs  gysdata
+ 0000:e036  Abs  isdigit
+ 0000:e018  Abs  key_click_bell
+ 0000:3e56       kf_attr_tbl
+ 0000:3cd8       kf_name_tbl
+ 0000:aab0       lcd_start_addr_tbl
+ 0000:ac44       lcd_to_scroll
+ 0000:bde3       lee_block
+ 0000:a541       line_draw
+ 0000:a152       list_menu
+ 0000:e078  Abs  log_to_ph
+ 0000:45f5       message_box
+ 0000:4658       message_box_for_pyh
+ 0000:45fb       message_box_more
+ 0000:e084  Abs  move_databuf_wbuf
+ 0000:e081  Abs  move_rbuf_databuf
+ 0000:e057  Abs  move_to_ram
+ 0000:e027  Abs  mspeed
+ 0000:e01b  Abs  mspeed4
+ 0000:a100       mud_proc_key
+ 0000:a1f4       mul10
+ 0000:a23e       mul2
+ 0000:a287       mul4
+ 0000:a217       mul_ax
+ 0000:e07b  Abs  oldmon
+ 0000:e045  Abs  out_celp_data
+ 0000:a46e       percent
+ 0000:a4e3       perform_random_it
+ 0000:3f7a       pf_attr_tbl
+ 0000:3eaa       pf_name_tbl
+ 0000:e08d  Abs  phyRead_16B
+ 0000:e090  Abs  phyRead_512B
+ 0000:e08a  Abs  phyWrite_16B
+ 0000:e087  Abs  phyWrite_512B
+ 0000:e06c  Abs  playdt
+ 0000:af80       pop_menu
+ 0000:e09f  Abs  proc_menuI
+ 0000:ad9c       proc_sys_event
+ 0000:a48b       random_it
+ 0000:ad46       release_key
+ 0000:ac58       scroll_to_lcd
+ 0000:e06f  Abs  set_alarm_on
+ 0000:af2f       set_get_buf
+ 0000:af56       set_read_buf
+ 0000:ada2       set_tba_buffer
+ 0000:aefa       setms
+ 0000:b921       show_block
+ 0000:4693       show_box
+ 0000:b839       show_digit
+ 0000:b90d       show_line
+ 0000:afca       show_menu_txt
+ 0000:4723       show_one_line
+ 0000:46df       show_string
+ 0000:e021  Abs  speed5
+ 0000:e01e  Abs  speed7
+ 0000:ba66       speed_read
+ 0000:ba54       speed_read_2
+ 0000:a667       square_draw
+ 0000:e00f  Abs  start_4ch
+ 0000:e03f  Abs  start_sound
+ 0000:e012  Abs  stop_4ch
+ 0000:e042  Abs  stop_sound
+ 0000:a6e4       w_block0
+ 0000:e033  Abs  wait_160_ms
+ 0000:e030  Abs  wait_1_sec
+ 0000:af78       wait_cr_key
+ 0000:e054  Abs  wait_dsp1_ready
+ 0000:ad59       wait_key
+ 0000:af0f       waittime
+ 0000:af12       waittime1
+ 0000:a6f7       write_block0
+ 0000:ac99       write_one_char
+
+  Address         Publics by Value
+
+ 0000:3800       goods_name_tbl
+ 0000:3a2e       goods_attr_tbl
+ 0000:3cd8       kf_name_tbl
+ 0000:3e56       kf_attr_tbl
+ 0000:3eaa       pf_name_tbl
+ 0000:3f7a       pf_attr_tbl
+ 0000:4002       cheat
+ 0000:43af       format_string
+ 0000:45f5       message_box
+ 0000:45fb       message_box_more
+ 0000:4658       message_box_for_pyh
+ 0000:4693       show_box
+ 0000:46df       show_string
+ 0000:4723       show_one_line
+ 0000:a100       mud_proc_key
+ 0000:a136       find_kf
+ 0000:a152       list_menu
+ 0000:a1e0       clean_list_right
+ 0000:a1f4       mul10
+ 0000:a217       mul_ax
+ 0000:a23e       mul2
+ 0000:a287       mul4
+ 0000:a312       divid_ax
+ 0000:a32e       divid2
+ 0000:a379       divid42
+ 0000:a3df       divid4
+ 0000:a46e       percent
+ 0000:a48b       random_it
+ 0000:a4e3       perform_random_it
+ 0000:a541       line_draw
+ 0000:a667       square_draw
+ 0000:a6ac       block_draw
+ 0000:a6e4       w_block0
+ 0000:a6f7       write_block0
+ 0000:a9db       clear_nline
+ 0000:aa13       clear_nline2
+ 0000:aab0       lcd_start_addr_tbl
+ 0000:ab50       get_player_img
+ 0000:ab64       get_player
+ 0000:abb6       get_img_data
+ 0000:abcc       get_img_data_fast
+ 0000:ac44       lcd_to_scroll
+ 0000:ac58       scroll_to_lcd
+ 0000:ac99       write_one_char
+ 0000:ace2       flash_cursor
+ 0000:ad46       release_key
+ 0000:ad59       wait_key
+ 0000:ad9c       proc_sys_event
+ 0000:ada2       set_tba_buffer
+ 0000:aef3       getms
+ 0000:aefa       setms
+ 0000:af04       gettime
+ 0000:af0f       waittime
+ 0000:af12       waittime1
+ 0000:af25       delay_160_ms
+ 0000:af2a       delay_1_sec
+ 0000:af2f       set_get_buf
+ 0000:af56       set_read_buf
+ 0000:af78       wait_cr_key
+ 0000:af80       pop_menu
+ 0000:afca       show_menu_txt
+ 0000:b839       show_digit
+ 0000:b90d       show_line
+ 0000:b921       show_block
+ 0000:ba54       speed_read_2
+ 0000:ba66       speed_read
+ 0000:bcff       bank_serve
+ 0000:bde3       lee_block
+ 0000:e006  Abs  bin2digit
+ 0000:e009  Abs  enter_sleep
+ 0000:e00c  Abs  enter_sleepz
+ 0000:e00f  Abs  start_4ch
+ 0000:e012  Abs  stop_4ch
+ 0000:e015  Abs  bell
+ 0000:e018  Abs  key_click_bell
+ 0000:e01b  Abs  mspeed4
+ 0000:e01e  Abs  speed7
+ 0000:e021  Abs  speed5
+ 0000:e024  Abs  cspeed
+ 0000:e027  Abs  mspeed
+ 0000:e02a  Abs  delay_time
+ 0000:e02d  Abs  delay_time1
+ 0000:e030  Abs  wait_1_sec
+ 0000:e033  Abs  wait_160_ms
+ 0000:e036  Abs  isdigit
+ 0000:e039  Abs  enable_dac_out
+ 0000:e03c  Abs  disable_dac_out
+ 0000:e03f  Abs  start_sound
+ 0000:e042  Abs  stop_sound
+ 0000:e045  Abs  out_celp_data
+ 0000:e048  Abs  TTS_Sleep
+ 0000:e04b  Abs  TTS_Wakeup
+ 0000:e04e  Abs  TTS_Reset
+ 0000:e051  Abs  Adj_Volume
+ 0000:e054  Abs  wait_dsp1_ready
+ 0000:e057  Abs  move_to_ram
+ 0000:e05a  Abs  get_8x8_font
+ 0000:e05d  Abs  ProcKey
+ 0000:e060  Abs  Proc_Key
+ 0000:e063  Abs  case
+ 0000:e066  Abs  TwoHz
+ 0000:e069  Abs  gysdata
+ 0000:e06c  Abs  playdt
+ 0000:e06f  Abs  set_alarm_on
+ 0000:e072  Abs  get_next_data
+ 0000:e075  Abs  getunicode
+ 0000:e078  Abs  log_to_ph
+ 0000:e07b  Abs  oldmon
+ 0000:e07e  Abs  ExeFile
+ 0000:e081  Abs  move_rbuf_databuf
+ 0000:e084  Abs  move_databuf_wbuf
+ 0000:e087  Abs  phyWrite_512B
+ 0000:e08a  Abs  phyWrite_16B
+ 0000:e08d  Abs  phyRead_16B
+ 0000:e090  Abs  phyRead_512B
+ 0000:e093  Abs  PhyReadBytes
+ 0000:e096  Abs  NgffsMoveData
+ 0000:e099  Abs  disp_icon
+ 0000:e09c  Abs  downexec
+ 0000:e09f  Abs  proc_menuI

@@ -1,0 +1,762 @@
+;;********************** const **************************************
+GOODMAN		equ	160
+BADMAN		equ	100
+
+INIT_MAP_LEN	equ	11
+CHANGE_MAP_LEN	equ	2+16+16
+
+ScreenX		equ	160		;屏幕宽
+ScreenY		equ	80		;屏幕高
+Unit_Width	equ	32		;单元的宽
+Unit_Height	equ	32		;单元的高
+
+Role_Width	equ	32		;主角的宽度
+Role_Height	equ	48		;主角的高度
+ScreenX_Num	equ	ScreenX/Unit_Width		;每行的单元数
+ScreenY_Num	equ	3				;每列的单元数
+
+BLAK		equ	1024		;地图中的障碍偏移值,即：障碍编号=BLAK+?
+DOOR_OFF	equ	2048		;门的偏移值
+NPC_OFF		equ	3072		;NPC的偏移值
+
+lee_test	equ	0
+
+data_read_buf	equ	cleanup_buffer	;256bytes Lee
+
+graph_height	equ	char_form
+
+;************ !!below rom access, cant modify ******************
+HDPS		equ	160
+VDPS		equ	80
+;ROM_BANK	equ	gmud_rom_bank
+
+GMUD_MON	equ	0
+MAX_GOODS	equ	20	;id+num
+NPC_GOODS	equ	5
+MAX_SELL	equ	10
+MAX_EQUIP	equ	11
+MAX_KF		equ	20	;id+lvl+pot
+MAX_USEKF	equ	5
+MAX_NAME	equ	8
+MAX_PASS	equ	6
+
+RESERVE_SIZE	equ	18
+CHECK_SIZE	equ	6
+;************ !!above rom access, cant modify ******************
+
+VERSION		equ	3
+END_MAP		equ	0ffh
+END_ID		equ	0ffh
+END_CLASS	equ	0ffh
+WALK_FLAG	equ	80h
+WALK_MASK	equ	7fh
+FLASH_FLAG	equ	11100000b
+
+MAX_CREATE	equ	8
+
+AGE_TIME	equ	3600*12		;12 hour
+TICK_TIME	equ	15		;15 sec
+SAVE_INTERVAL	equ	60*5		;300 sec
+FRESH_TIME	equ	10		;10 min(unit:min)
+MAN_STEP	equ	4
+MAN_WIDTH	equ	16
+ROOM_BASELINE	equ	50
+MAN_BASELINE	equ	50
+
+;---- 40 80 40 -----
+STREET_NUM	equ	7
+SCROLL_POS1	equ	40
+SCROLL_POS2	equ	120
+
+MAIN_X0		equ	8
+MAIN_Y0		equ	1
+FRAME_X0	equ	48
+FRAME_Y0	equ	4
+SYS_X0		equ	114
+
+;;****************** global variable *********************************
+;------------------------------------------------------------
+;stat	可用的缓冲区		address
+;Y define	2,HelpPtr
+;Y define	2,tonea_ptr		; address pointer of song	
+;Y define	2,alarm_ptr
+;N define	2,volume_ptr		; base volume of sound 
+;N define	2,mode_buffer		;lcd.s 临时变量
+;N define	2,line_buffer		;lcd.s 临时变量
+;
+;Y define	64,combf		;40h
+;Y define	312,ScreenBuffer	;2c0h
+;Y define	20,status_buf		;名片画头像
+;N define	17,down_ram_set		;
+;Y define	15,cal_memory		;
+;N define	39,CharAttr		;
+;N define	90,hzstudy_buf		;
+;Y define	256,RecBuf		;
+;N define	256,_2_RecBuf		;
+;Y define	63,VARADDR		;不调用word speak 时可临时用
+;------------------------------------------------------------
+;************ !!below rom access, cant modify ******************
+string_ptr	equ	HelpPtr
+obj_ptr		equ	tonea_ptr
+you_ptr		equ	alarm_ptr
+;************ !!above rom access, cant modify ******************
+
+map_stack	equ	status_buf		;size:16
+menu_stack	equ	status_buf+16		;size:4
+varbuf		equ	cal_memory		;size:15
+room_map_buf	equ	RecBuf			;size:128
+dmenu_buf	equ	VARADDR		;max item=31
+tmpbf		equ	combf+50		;size:15
+__base	equ	combf
+	;------------ for global -----------
+	define	1,char_row	;CPR or CPR26
+	define	1,char_col	;RPS or 13
+	define	1,char_height	;12 or 16
+	;------------ for global -----------
+
+	;------------ for gmud.s -----------
+	define	1,map_id
+	define	1,map_type
+	define	2,map_ptr	;map address
+
+	define	1,man_id	;bit7:walk stauts bit1-0:way
+	define	1,man_x0
+	define	1,start_id	;start spaceID in screen
+	define	1,startid_off	;在startid中的偏移
+	define	1,end_id	;end spaceID in screen
+
+	define	1,located_id	;man face spaceID
+	define	1,located_class
+	define	1,located_off
+	define	1,team_flag	;bit7:turn bit6-0:man_picid
+	;------------ for gmud.s -----------
+
+	;------------ for npc.s -----------
+	define	1,npc_flag
+	;------------ for npc.s -----------
+
+	;------------ for goods.s & skills.s -----------
+	define	2,goods_ptr
+kf_ptr	equ	goods_ptr
+	;------------ for goods.s & skills.s -----------
+
+	;------------ for string.s -----------
+	define	1,limb_flag
+	;------------ for string.s -----------
+
+	define	1,tmp1		;公用临时变量
+	define	1,tmp2		;公用临时变量
+	define	1,tmp3		;公用临时变量
+
+	if	__base > combf+50
+		DEFINE OVER!!!
+	endif
+
+;15
+__base	equ	tmpbf
+	;------------ for gmud.s -----------
+	define	2,start_x0	;write_block use, 相当x0,有正负
+	define	1,space_id	;spaceID结构临时变量
+	define	1,item_id
+	define	1,item_class
+	define	1,space_width
+	define	1,item_width
+	define	1,item_height
+text_id		equ	item_id
+text_class	equ	item_class
+	;------------ for gmud.s -----------
+
+__base	equ	tmpbf
+	;------------ for goods.s & skills.s -----------
+	define	2,price_ptr
+	define	2,goods_price
+	define	1,my_skill	;skill level
+	define	2,skill_mount
+	;------------ for goods.s & skills.s -----------
+
+;******************* !!below rom access, dont modify **********************
+__base	equ	2000h
+	define	2,bmp_class_tbl
+	define	32,txt_class_tbl
+	define	64,my_hotbank
+	define	1,idles		;保存idleout_second
+	define	1,exit_code	;fight的退出码
+	define	1,my_second	
+	define	1,my_ms
+	define	1,walking	;走路中标志
+	define	1,ghost_gender_bak	;通辑犯性别
+	define	1,cheat_mode
+	define	1,endx		;结局类型(0-2)
+	define	1,xor		;异或值
+	
+	define	1,G_map_bank		;地图数据所在bank
+	define	2,G_Total_Map		;地图总数
+	define	2,G_Total_Door		;门的总数
+	define	1,G_Curr_Map		;当前地图号,限制地图号在256之内
+	define	1,G_Init_X		;人的初始X坐标
+	define	1,G_Init_Y		;人的初始Y坐标
+	define	2,G_Door_Addr		;地图所用门的地址
+	define	2,G_Npc_Addr		;地图上npc信息的地址
+	define	2,G_Base_Map		;地图数据的基地址
+	define	2,G_Map_Addr		;子地图列表的起始地址
+	define	1,G_Map_Width		;宽
+	define	1,G_Map_Height		;高
+	define	16,G_Map_Ground		;地面材料
+	define	16,G_MapName		;名字
+
+	define	2,G_Scene		;当前地图数据指针
+	define	1,G_Sx			;所处场景的左上坐标
+	define	1,G_Sy
+	define	1,G_Dx			;行走时的偏移量
+	define	1,G_Dy
+
+	define	1,G_role_status		;行走时的姿态
+	define	1,G_role_way		;角色方向
+	define	1,G_role_speed		;速度
+	define	1,G_role_X		;角色位置坐标
+	define	1,G_role_Y
+	define	1,G_role_Width		;角色大小
+	define	1,G_role_Height
+
+	define	1,G_img_cmd		;取图时的命令设置
+	define	2,G_item		;单元在地图中的原始数据
+	
+	;------------ npc碰撞检测 -----------
+	define	2,G_Curr_Id		;主角所处的块在地图上的表示
+	define	2,G_id_item		;NPC的图象id
+
+	;----------- 杀妖系统 ------------
+	define	1,G_Killer_Map
+	define	1,G_Killer_X
+	define	1,G_Killer_Y
+	define	4,G_Killer_Timeout
+	define	1,G_Task_Flag		;bit7: kill ghost
+	;----------- 杀妖系统 ------------
+	
+	define	130,G_img_buf		;取图象用的缓冲
+	define	128,G_and_or		;与或缓冲
+	define	2,L_game_i
+	define	2,L_game_j
+	define	2,L_game_Sy
+	define	2,L_game_Sx
+	define	2,L_game_x
+	define	2,L_game_y
+	define	1,L_game_nx
+	define	1,L_game_ny
+	define	2,L_game_n
+					
+	define	256,game_buf		;缓冲for pyh
+	define	CPR*80,img_buf	;图象缓冲
+	define	CPR*80,scroll_buf	;显存缓冲(4色灰度 Lee)
+	define	256,bank_text
+
+	define	2,lcdbuf_ptr	;(scroll_buf,lcdbuf)
+	define	2,mud_seed
+	define	2,skill_level
+	define	1,obj_flag
+
+	;------------ for fight.s -----------
+	define	1,net_flag
+	define	1,perform_flag	;
+	define	1,perform_id
+	define	1,kf_type
+	define	1,kf_id
+goods_type	equ	kf_type
+goods_id	equ	kf_id
+	;------------ for fight.s -----------
+
+	;------------ player state -----------
+save_data	equ	__base
+	define	1,game_ver
+	define	4,game_pid
+	define	4,mud_age
+	define	1,attr_str
+	define	1,attr_dex
+	define	1,attr_int
+	define	1,attr_con
+	define	1,attr_per
+	define	1,attr_kar
+
+	define	1,man_picid	;max:16
+	define	1,man_master
+	define	2,man_respect
+
+man_state	equ	__base
+	define	MAX_NAME+1,man_name
+	define	1,man_busy
+	define	1,man_pai
+	define	1,man_gender
+	define	1,man_age
+	define	1,man_daode
+	define	1,man_attack
+	define	1,man_defense
+	define	1,man_damage
+	define	1,man_armor
+	define	4,man_exp
+	define	2,man_force
+	define	1,man_str
+	define	1,man_dex
+	define	1,man_int
+	define	1,man_con
+	define	1,man_per
+	define	1,man_kar
+	define	2,man_hp
+	define	2,man_maxhp
+	define	2,man_fp
+	define	2,man_maxfp
+	define	2,man_effhp
+	define	1,man_weapon
+
+MAN_SIZE	equ	__base-man_state
+
+	define	2,man_food
+	define	2,man_maxfood
+	define	2,man_water
+	define	2,man_maxwater
+	define	2,man_pot
+	define	4,man_money
+
+	define	MAX_USEKF,man_usekf	;bit7:1 enable 0: no
+	define	1,man_kfnum
+	define	4*MAX_KF,man_kf		;功夫(id 级别 当前数值)
+
+	define	MAX_PASS+1,man_pwd
+	define	MAX_EQUIP,man_equip	;bit7:1 enable 0: no
+	define	2*MAX_GOODS,man_goods	;物品(id 数量)
+	define	2,top_dance
+	define	2,top_ball
+	define 	32,npc_stat_buf
+zero_area	equ	__base	
+	define	1,shiban
+	define	1,npc_kill
+	define	1,guan_kill
+	define	1,si_kill
+	define	1,game_sec
+	define	1,game_min
+	define	2,game_hour
+	define	RESERVE_SIZE,reserve_buf
+ZERO_SIZE	equ	__base-zero_area	
+SAVE_SIZE	equ	__base-save_data
+	;------------ player state -----------
+
+	;------------ npc state -----------
+npc_state	equ	__base
+	define	MAX_NAME+1,npc_name
+	define	1,npc_busy
+	define	1,npc_pai
+	define	1,npc_gender
+	define	1,npc_age
+	define	1,npc_daode
+	define	1,npc_attack
+	define	1,npc_defense
+	define	1,npc_damage
+	define	1,npc_armor
+	define	4,npc_exp
+	define	2,npc_force
+	define	1,npc_str
+	define	1,npc_dex
+	define	1,npc_int
+	define	1,npc_con
+	define	1,npc_per
+	define	1,npc_kar
+	define	2,npc_hp
+	define	2,npc_maxhp
+	define	2,npc_fp
+	define	2,npc_maxfp
+	define	2,npc_effhp
+	define	NPC_GOODS,npc_goods
+npc_weapon	equ	npc_goods
+npc_equip	equ	npc_goods+1
+
+	define	2,npc_money
+	define	MAX_USEKF,npc_usekf	;bit7:1 enable 0: no
+	define	1,npc_kfnum
+NPC_DATA_LEN	equ	__base-npc_state
+	define	2*MAX_KF,npc_kf		;功夫(id 级别)
+	define	MAX_SELL,vendor_goods
+	;------------ npc state -----------
+;******************* !!above rom access, dont modify **********************
+	define	24,func_buf
+	define	8,task_buf
+
+quest_type	equ	task_buf
+quest_id	equ	task_buf+1
+data_size	equ	task_buf+2
+	define	72,quest_temp		;任务区(12byte一任务)
+	define	2,home_buf
+
+	;------------ system setup -----------
+	define	1,timetick
+	define	1,timeage
+
+	define	1,busy_flag
+	define	4,save_time
+	;------------ system setup -----------
+
+	;------------ for fight.s -----------
+	define	1,escape_factor
+	define	2,damage_point
+	define	2,damage_bonus
+	define	4,attack_point
+	define	4,dodge_point
+	define	4,parry_point
+kf_data		equ	__base
+	define	1,kf_lvl
+	define	1,damage_type
+	define	1,kf_reserve
+	define	1,kf_ap
+	define	1,kf_dp
+	define	1,kf_pp
+	define	2,kf_damage
+	define	2,kf_force
+	define	2,kf_desc
+	define	1,man_kf_dp		;pyh	8-16
+	define	1,man_kf_pp
+	define	1,npc_kf_dp
+	define	1,npc_kf_pp
+	;------------ for fight.s -----------
+
+	define	200,npc_desc		;long describe不定长
+	define	30,F_RecvBuffer
+S_SendBuffer	equ	F_RecvBuffer
+	define	1,X_position
+	define	1,Y_position
+	define	1,char_form
+	define	1,scr_word
+	define	1,scr_form
+	define	1,scr_sum
+	define	1,scr_num
+	define	1,line_num		;总行数
+	define	2,data_addr
+	define	2,prog_addr
+	define	2,index_addr
+	define	1,X_sit
+	define	1,Y_sit
+	define	1,menu_tmp1
+	define	1,menu_tmp2
+	define	1,check_item
+	
+	if	__base > 37ffh
+		DEFINE OVER!!!
+	endif
+
+;;*******************************************************************
+;; bios/h/graph.h
+;;*******************************************************************
+m1l	equ	a1	;(双字节)
+m1h	equ	m1l+1
+m2l	equ	a2	;(双字节)
+m2h	equ	m2l+1
+__base	equ	graph_buf			;30 bytes
+	define	1,x0
+	define	1,y0
+	define  1,x1
+	define  1,y1
+	define	1,xx
+	define	1,yy
+	define	1,lcmd		;=0;clear;1;draw;2:convert;
+				; 3: ora  4:and  5:eor
+	define	1,sgn
+	define	1,y0back
+	define	2,m3l
+m3h	equ	m3l+1
+	define	9,r0
+r1		equ	r0+1
+r2		equ	r1+1
+r3		equ	r2+1
+r4		equ	r3+1
+r5		equ	r4+1
+r6		equ	r5+1
+r7		equ	r6+1
+r8		equ	r7+1
+
+	define	1,list_x0	;for list_menu keep right frame coordinate
+	define	1,list_y0
+	define	1,list_x1
+	define	1,list_y1
+
+;;******************** macro ***************************************
+dd	macro	val
+	dw	val%65536
+	dw	val/65536
+	endm
+
+PushMap	macro
+	ldx	map_stack
+	lda	map_type
+	sta	map_stack+1,x
+	inx
+	lda	map_id
+	sta	map_stack+1,x
+	inx
+	lda	start_id
+	sta	map_stack+1,x
+	inx
+	lda	startid_off
+	sta	map_stack+1,x
+	inx
+	lda	man_x0
+	sta	map_stack+1,x
+	inx
+	stx	map_stack
+	endm
+
+PullMap	macro
+	ldx	map_stack
+	lda	map_stack,x
+	dex
+	sta	man_x0
+	lda	map_stack,x
+	dex
+	sta	startid_off
+	lda	map_stack,x
+	dex
+	sta	start_id
+	lda	map_stack,x
+	dex
+	sta	map_id
+	lda	map_stack,x
+	dex
+	sta	map_type
+	stx	map_stack
+	endm
+
+PushMenu	macro	layer
+	tsx
+	txa
+	ifidn	<layer>,<a>
+		ldx	#0
+	else
+		ldx	#layer
+	endif
+	sta	menu_stack,x
+	endm
+
+PullMenu	macro	layer
+	ifidn	<layer>,<a>
+		ldx	#0
+	else
+		ldx	#layer
+	endif
+	lda	menu_stack,x
+	tax
+	txs
+	endm
+
+Distant	macro	dx0,dx1
+	sec
+	lda	dx1
+	sbc	dx0
+	clc
+	adc	#1
+	endm
+
+lm21	macro	d,s
+	lda	s
+	sta	d
+	lda	#0
+	sta	d+1
+	endm
+
+mulx3	macro	s
+	lda	s
+	asl	a
+	clc
+	adc	s
+	endm
+
+sub0a1	macro	d
+	eor	#0ffh
+	sta	d
+	inc	d
+	endm
+
+sub0a2	macro	dd
+	eor	#0ffh
+	sta	dd
+	lda	#0ffh
+	sta	dd+1
+	inc2	dd
+	endm
+
+sub1	macro	s1,s2,d
+	sec
+	lda	s1
+	sbc	s2
+	ifidn	<d>,<a>
+		sta	s1
+	else
+		sta	d
+	endif
+	endm
+
+sub21	macro	s1,s2,d
+	sec
+	lda	s1
+	sbc	s2
+	ifidn	<d>,<a>
+		sta	s1
+		ifzp	s1
+			bcs	$+4
+		else
+			bcs	$+5
+		endif
+		dec	s1+1
+	else
+		sta	d
+		lda	s1+1
+		sta	d+1
+		ifzp	d
+			bcs	$+4
+		else
+			bcs	$+5
+		endif
+		dec	d+1
+	endif
+	endm
+
+sub42	macro	s1,s2,d,local
+	ifidn	<d>,<a>
+	else
+		lda	s1+2
+		sta	d+2
+		lda	s1+3
+		sta	d+3
+	endif
+
+	sec
+	lda	s1
+	sbc	s2
+	ifidn	<d>,<a>
+		sta	s1
+	else
+		sta	d
+	endif
+	lda	s1+1
+	sbc	s2+1
+	ifidn	<d>,<a>
+		sta	s1+1
+	else
+		sta	d+1
+	endif
+	bcs	local
+
+	ifidn	<d>,<a>
+		lda	s1+2
+		ifzp	s1+2
+		bne	$+4
+		else
+		bne	$+5
+		endif
+		dec	s1+3
+		dec	s1+2
+	else
+		lda	d+2
+		ifzp	d+2
+		bne	$+4
+		else
+		bne	$+5
+		endif
+		dec	d+3
+		dec	d+2
+	endif
+local:
+	endm
+
+add42	macro	s1,s2,d,local
+	ifidn	<d>,<a>
+	else
+		lda	s1+2
+		sta	d+2
+		lda	s1+3
+		sta	d+3
+	endif
+
+	clc
+	lda	s1
+	adc	s2
+	ifidn	<d>,<a>
+		sta	s1
+	else
+		sta	d
+	endif
+	lda	s1+1
+	adc	s2+1
+	ifidn	<d>,<a>
+		sta	s1+1
+	else
+		sta	d+1
+	endif
+	bcc	local
+
+	ifidn	<d>,<a>
+		inc	s1+2
+		ifzp	s1+2
+		bne	$+4
+		else
+		bne	$+5
+		endif
+		inc	s1+3
+	else
+		inc	d+2
+		ifzp	d+2
+		bne	$+4
+		else
+		bne	$+5
+		endif
+		inc	d+3
+	endif
+local:
+	endm
+
+cmp21	macro	s1,s2,a,local
+	ifcidn	s2,#
+	ld~a	s1+1
+	cp~a	>s2
+	bne	local
+	ld~a	s1
+	cp~a	<s2
+local:
+	else
+	ld~a	s1+1
+	cp~a	#0
+	bne	local
+	ld~a	s1
+	cp~a	s2
+local:
+	endif
+	endm
+
+cmp4	macro	s1,s2,a,local
+	ld~a	s1+3
+	cp~a	s2+3
+	bne	local
+	ld~a	s1+2
+	cp~a	s2+2
+	bne	local
+	ld~a	s1+1
+	cp~a	s2+1
+	bne	local
+	ld~a	s1
+	cp~a	s2
+local:
+	endm
+
+SET_TALK_XY	macro	xx
+	ldx	#30
+	ldy	#16
+	endm
+
+;MYSTOP	macro
+;	bit	stop_flag
+;	bpl	$+3
+;	db	3
+;	endm
+
+SSTOP	macro	num
+	if	0
+	extrn	print_err
+	lda	#num
+	jmp	print_err
+	endif
+	endm

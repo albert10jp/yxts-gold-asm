@@ -1,0 +1,407 @@
+goods.dat start pc:3800 length:4d8
+skill.dat start pc:3cd8 length:2bb
+a2.s start pc:4000 length:a
+unr_sys.s start pc:400a length:0
+lee2.s start pc:400a length:86
+fight.s start pc:4090 length:149e
+string.s start pc:552e length:7c9
+skilly.s start pc:5cf7 length:1be
+goodsx.s start pc:5eb5 length:1ab
+string2.s start pc:6060 length:8c3
+perform.s start pc:6923 length:2221
+hello.s start pc:8b44 length:4e
+input.s start pc:8b92 length:438
+netengine.s start pc:8fca length:736
+null.s start pc:9700 length:0
+aux2.s start pc:a100 length:36
+lee3.s start pc:a136 length:be
+math.s start pc:a1f4 length:34d
+draw.s start pc:a541 length:56f
+mxxtbl.s start pc:aab0 length:a0
+lcd.s start pc:ab50 length:149
+font.s start pc:ac99 length:ad
+system.s start pc:ad46 length:23a
+menu.s start pc:af80 length:8b9
+digit.s start pc:b839 length:21b
+s_read.s start pc:ba54 length:2a1
+bank2.s start pc:bcf5 length:ee
+lee_block.s start pc:bde3 length:208
+null2.s start pc:bfeb length:0
+
+  Address         Publics by Name
+
+ 0000:e051  Abs  Adj_Volume
+ 0000:901c       CommunicateExit
+ 0000:8fca       CommunicateInit
+ 0000:e07e  Abs  ExeFile
+ 0000:e096  Abs  NgffsMoveData
+ 0000:e093  Abs  PhyReadBytes
+ 0000:e05d  Abs  ProcKey
+ 0000:e060  Abs  Proc_Key
+ 0000:9082       ReceiveData
+ 0000:9067       SendData
+ 0000:e04e  Abs  TTS_Reset
+ 0000:e048  Abs  TTS_Sleep
+ 0000:e04b  Abs  TTS_Wakeup
+ 0000:e066  Abs  TwoHz
+ 0000:48ab       attack_man
+ 0000:4696       attack_npc
+ 0000:bcff       bank_serve
+ 0000:e015  Abs  bell
+ 0000:e006  Abs  bin2digit
+ 0000:815a       bingxin
+ 0000:a6ac       block_draw
+ 0000:8665       call_out
+ 0000:e063  Abs  case
+ 0000:552e       cat_string
+ 0000:72c0       chan
+ 0000:8e92       check_pwd
+ 0000:5dd8       check_skill
+ 0000:a1e0       clean_list_right
+ 0000:a9db       clear_nline
+ 0000:aa13       clear_nline2
+ 0000:e024  Abs  cspeed
+ 0000:6cf2       daoying_gua
+ 0000:6df7       daoying_zhen
+ 0000:af25       delay_160_ms
+ 0000:af2a       delay_1_sec
+ 0000:e02a  Abs  delay_time
+ 0000:e02d  Abs  delay_time1
+ 0000:e03c  Abs  disable_dac_out
+ 0000:e099  Abs  disp_icon
+ 0000:a32e       divid2
+ 0000:a3df       divid4
+ 0000:a379       divid42
+ 0000:a312       divid_ax
+ 0000:e09c  Abs  downexec
+ 0000:e039  Abs  enable_dac_out
+ 0000:e009  Abs  enter_sleep
+ 0000:e00c  Abs  enter_sleepz
+ 0000:6f5e       feizhi
+ 0000:83e5       fenshen
+ 0000:40d7       fight
+ 0000:4090       final_fight
+ 0000:6028       find_goods
+ 0000:a136       find_kf
+ 0000:4061       find_name
+ 0000:4047       find_npc_kf
+ 0000:ace2       flash_cursor
+ 0000:5553       format_string
+ 0000:e05a  Abs  get_8x8_font
+ 0000:5e3d       get_basic_kf
+ 0000:6008       get_goods_attr
+ 0000:5ffc       get_goods_name
+ 0000:abb6       get_img_data
+ 0000:abcc       get_img_data_fast
+ 0000:5e95       get_kf_attr
+ 0000:5e7d       get_kf_name
+ 0000:e072  Abs  get_next_data
+ 0000:407e       get_npc_name
+ 0000:5e89       get_pf_name
+ 0000:ab64       get_player
+ 0000:ab50       get_player_img
+ 0000:6060       get_py_action
+ 0000:6140       get_result_msg
+ 0000:5afc       get_text_data
+ 0000:5e53       get_weapon_kf
+ 0000:aef3       getms
+ 0000:af04       gettime
+ 0000:e075  Abs  getunicode
+ 0000:3a2e       goods_attr_tbl
+ 0000:3800       goods_name_tbl
+ 0000:e069  Abs  gysdata
+ 0000:7199       honglian
+ 0000:884a       init_ptemp
+ 0000:8b92       input_new
+ 0000:e036  Abs  isdigit
+ 0000:75e9       ji
+ 0000:e018  Abs  key_click_bell
+ 0000:3e56       kf_attr_tbl
+ 0000:3cd8       kf_name_tbl
+ 0000:aab0       lcd_start_addr_tbl
+ 0000:ac44       lcd_to_scroll
+ 0000:bde3       lee_block
+ 0000:722f       leidong
+ 0000:740d       lian
+ 0000:8214       lianzhan
+ 0000:a541       line_draw
+ 0000:a152       list_menu
+ 0000:7efb       liuchu
+ 0000:7cbc       liulang
+ 0000:e078  Abs  log_to_ph
+ 0000:7760       luanhuan
+ 0000:7d97       luoying
+ 0000:597d       message_box
+ 0000:59e0       message_box_for_pyh
+ 0000:5983       message_box_more
+ 0000:e084  Abs  move_databuf_wbuf
+ 0000:e081  Abs  move_rbuf_databuf
+ 0000:e057  Abs  move_to_ram
+ 0000:e027  Abs  mspeed
+ 0000:e01b  Abs  mspeed4
+ 0000:a100       mud_proc_key
+ 0000:a1f4       mul10
+ 0000:a23e       mul2
+ 0000:a287       mul4
+ 0000:a217       mul_ax
+ 0000:51c4       netfight
+ 0000:e07b  Abs  oldmon
+ 0000:e045  Abs  out_celp_data
+ 0000:a46e       percent
+ 0000:8b46       perform
+ 0000:a4e3       perform_random_it
+ 0000:3f7a       pf_attr_tbl
+ 0000:3eaa       pf_name_tbl
+ 0000:e08d  Abs  phyRead_16B
+ 0000:e090  Abs  phyRead_512B
+ 0000:e08a  Abs  phyWrite_16B
+ 0000:e087  Abs  phyWrite_512B
+ 0000:e06c  Abs  playdt
+ 0000:af80       pop_menu
+ 0000:e09f  Abs  proc_menuI
+ 0000:ad9c       proc_sys_event
+ 0000:400a       query_npc_skill
+ 0000:5d90       query_skill
+ 0000:886f       quit_refresh
+ 0000:a48b       random_it
+ 0000:5e70       random_kf_action
+ 0000:9082       receive_data
+ 0000:6933       recover
+ 0000:ad46       release_key
+ 0000:7bff       sanhua
+ 0000:ac58       scroll_to_lcd
+ 0000:9067       send_data
+ 0000:e06f  Abs  set_alarm_on
+ 0000:af2f       set_get_buf
+ 0000:af56       set_read_buf
+ 0000:ada2       set_tba_buffer
+ 0000:aefa       setms
+ 0000:804a       shengui
+ 0000:b921       show_block
+ 0000:5a1b       show_box
+ 0000:b839       show_digit
+ 0000:4e89       show_fight_msg
+ 0000:5eb5       show_goods
+ 0000:b90d       show_line
+ 0000:6cc7       show_man_busy
+ 0000:afca       show_menu_txt
+ 0000:5aab       show_one_line
+ 0000:5cf7       show_perform
+ 0000:5a67       show_string
+ 0000:4b79       skill_npc_power
+ 0000:4b66       skill_power
+ 0000:e021  Abs  speed5
+ 0000:e01e  Abs  speed7
+ 0000:ba66       speed_read
+ 0000:ba54       speed_read_2
+ 0000:a667       square_draw
+ 0000:e00f  Abs  start_4ch
+ 0000:e03f  Abs  start_sound
+ 0000:e012  Abs  stop_4ch
+ 0000:e042  Abs  stop_sound
+ 0000:74cc       taoyue
+ 0000:a6e4       w_block0
+ 0000:e033  Abs  wait_160_ms
+ 0000:e030  Abs  wait_1_sec
+ 0000:af78       wait_cr_key
+ 0000:e054  Abs  wait_dsp1_ready
+ 0000:ad59       wait_key
+ 0000:af0f       waittime
+ 0000:af12       waittime1
+ 0000:a6f7       write_block0
+ 0000:ac99       write_one_char
+ 0000:8498       yianmu
+ 0000:82d4       yidao
+ 0000:7862       yinyang
+ 0000:6ae0       zhangdao_gua
+ 0000:6ba3       zhangdao_zhen
+ 0000:7a00       zhen
+
+  Address         Publics by Value
+
+ 0000:3800       goods_name_tbl
+ 0000:3a2e       goods_attr_tbl
+ 0000:3cd8       kf_name_tbl
+ 0000:3e56       kf_attr_tbl
+ 0000:3eaa       pf_name_tbl
+ 0000:3f7a       pf_attr_tbl
+ 0000:400a       query_npc_skill
+ 0000:4047       find_npc_kf
+ 0000:4061       find_name
+ 0000:407e       get_npc_name
+ 0000:4090       final_fight
+ 0000:40d7       fight
+ 0000:4696       attack_npc
+ 0000:48ab       attack_man
+ 0000:4b66       skill_power
+ 0000:4b79       skill_npc_power
+ 0000:4e89       show_fight_msg
+ 0000:51c4       netfight
+ 0000:552e       cat_string
+ 0000:5553       format_string
+ 0000:597d       message_box
+ 0000:5983       message_box_more
+ 0000:59e0       message_box_for_pyh
+ 0000:5a1b       show_box
+ 0000:5a67       show_string
+ 0000:5aab       show_one_line
+ 0000:5afc       get_text_data
+ 0000:5cf7       show_perform
+ 0000:5d90       query_skill
+ 0000:5dd8       check_skill
+ 0000:5e3d       get_basic_kf
+ 0000:5e53       get_weapon_kf
+ 0000:5e70       random_kf_action
+ 0000:5e7d       get_kf_name
+ 0000:5e89       get_pf_name
+ 0000:5e95       get_kf_attr
+ 0000:5eb5       show_goods
+ 0000:5ffc       get_goods_name
+ 0000:6008       get_goods_attr
+ 0000:6028       find_goods
+ 0000:6060       get_py_action
+ 0000:6140       get_result_msg
+ 0000:6933       recover
+ 0000:6ae0       zhangdao_gua
+ 0000:6ba3       zhangdao_zhen
+ 0000:6cc7       show_man_busy
+ 0000:6cf2       daoying_gua
+ 0000:6df7       daoying_zhen
+ 0000:6f5e       feizhi
+ 0000:7199       honglian
+ 0000:722f       leidong
+ 0000:72c0       chan
+ 0000:740d       lian
+ 0000:74cc       taoyue
+ 0000:75e9       ji
+ 0000:7760       luanhuan
+ 0000:7862       yinyang
+ 0000:7a00       zhen
+ 0000:7bff       sanhua
+ 0000:7cbc       liulang
+ 0000:7d97       luoying
+ 0000:7efb       liuchu
+ 0000:804a       shengui
+ 0000:815a       bingxin
+ 0000:8214       lianzhan
+ 0000:82d4       yidao
+ 0000:83e5       fenshen
+ 0000:8498       yianmu
+ 0000:8665       call_out
+ 0000:884a       init_ptemp
+ 0000:886f       quit_refresh
+ 0000:8b46       perform
+ 0000:8b92       input_new
+ 0000:8e92       check_pwd
+ 0000:8fca       CommunicateInit
+ 0000:901c       CommunicateExit
+ 0000:9067       SendData
+ 0000:9067       send_data
+ 0000:9082       ReceiveData
+ 0000:9082       receive_data
+ 0000:a100       mud_proc_key
+ 0000:a136       find_kf
+ 0000:a152       list_menu
+ 0000:a1e0       clean_list_right
+ 0000:a1f4       mul10
+ 0000:a217       mul_ax
+ 0000:a23e       mul2
+ 0000:a287       mul4
+ 0000:a312       divid_ax
+ 0000:a32e       divid2
+ 0000:a379       divid42
+ 0000:a3df       divid4
+ 0000:a46e       percent
+ 0000:a48b       random_it
+ 0000:a4e3       perform_random_it
+ 0000:a541       line_draw
+ 0000:a667       square_draw
+ 0000:a6ac       block_draw
+ 0000:a6e4       w_block0
+ 0000:a6f7       write_block0
+ 0000:a9db       clear_nline
+ 0000:aa13       clear_nline2
+ 0000:aab0       lcd_start_addr_tbl
+ 0000:ab50       get_player_img
+ 0000:ab64       get_player
+ 0000:abb6       get_img_data
+ 0000:abcc       get_img_data_fast
+ 0000:ac44       lcd_to_scroll
+ 0000:ac58       scroll_to_lcd
+ 0000:ac99       write_one_char
+ 0000:ace2       flash_cursor
+ 0000:ad46       release_key
+ 0000:ad59       wait_key
+ 0000:ad9c       proc_sys_event
+ 0000:ada2       set_tba_buffer
+ 0000:aef3       getms
+ 0000:aefa       setms
+ 0000:af04       gettime
+ 0000:af0f       waittime
+ 0000:af12       waittime1
+ 0000:af25       delay_160_ms
+ 0000:af2a       delay_1_sec
+ 0000:af2f       set_get_buf
+ 0000:af56       set_read_buf
+ 0000:af78       wait_cr_key
+ 0000:af80       pop_menu
+ 0000:afca       show_menu_txt
+ 0000:b839       show_digit
+ 0000:b90d       show_line
+ 0000:b921       show_block
+ 0000:ba54       speed_read_2
+ 0000:ba66       speed_read
+ 0000:bcff       bank_serve
+ 0000:bde3       lee_block
+ 0000:e006  Abs  bin2digit
+ 0000:e009  Abs  enter_sleep
+ 0000:e00c  Abs  enter_sleepz
+ 0000:e00f  Abs  start_4ch
+ 0000:e012  Abs  stop_4ch
+ 0000:e015  Abs  bell
+ 0000:e018  Abs  key_click_bell
+ 0000:e01b  Abs  mspeed4
+ 0000:e01e  Abs  speed7
+ 0000:e021  Abs  speed5
+ 0000:e024  Abs  cspeed
+ 0000:e027  Abs  mspeed
+ 0000:e02a  Abs  delay_time
+ 0000:e02d  Abs  delay_time1
+ 0000:e030  Abs  wait_1_sec
+ 0000:e033  Abs  wait_160_ms
+ 0000:e036  Abs  isdigit
+ 0000:e039  Abs  enable_dac_out
+ 0000:e03c  Abs  disable_dac_out
+ 0000:e03f  Abs  start_sound
+ 0000:e042  Abs  stop_sound
+ 0000:e045  Abs  out_celp_data
+ 0000:e048  Abs  TTS_Sleep
+ 0000:e04b  Abs  TTS_Wakeup
+ 0000:e04e  Abs  TTS_Reset
+ 0000:e051  Abs  Adj_Volume
+ 0000:e054  Abs  wait_dsp1_ready
+ 0000:e057  Abs  move_to_ram
+ 0000:e05a  Abs  get_8x8_font
+ 0000:e05d  Abs  ProcKey
+ 0000:e060  Abs  Proc_Key
+ 0000:e063  Abs  case
+ 0000:e066  Abs  TwoHz
+ 0000:e069  Abs  gysdata
+ 0000:e06c  Abs  playdt
+ 0000:e06f  Abs  set_alarm_on
+ 0000:e072  Abs  get_next_data
+ 0000:e075  Abs  getunicode
+ 0000:e078  Abs  log_to_ph
+ 0000:e07b  Abs  oldmon
+ 0000:e07e  Abs  ExeFile
+ 0000:e081  Abs  move_rbuf_databuf
+ 0000:e084  Abs  move_databuf_wbuf
+ 0000:e087  Abs  phyWrite_512B
+ 0000:e08a  Abs  phyWrite_16B
+ 0000:e08d  Abs  phyRead_16B
+ 0000:e090  Abs  phyRead_512B
+ 0000:e093  Abs  PhyReadBytes
+ 0000:e096  Abs  NgffsMoveData
+ 0000:e099  Abs  disp_icon
+ 0000:e09c  Abs  downexec
+ 0000:e09f  Abs  proc_menuI

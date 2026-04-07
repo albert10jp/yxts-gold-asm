@@ -1,0 +1,7 @@
+	;----------- 杀妖系统 ------------
+	define	1,G_Killer_Map
+	define	1,G_Killer_X
+	define	1,G_Killer_Y
+	define	4,G_Killer_Timeout
+	define	1,G_Task_Flag		;bit7: kill ghost
+	;----------- 杀妖系统 ------------
